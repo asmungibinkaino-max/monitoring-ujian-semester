@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10233f">
+  <title>Monitoring Pengawas Ujian Semester</title>
+  <style>
+    :root{--navy:#10233f;--navy2:#18385c;--blue:#2b6cb0;--teal:#0f9d8a;--bg:#f3f6fa;--card:#fff;--text:#1d2b3c;--muted:#718096;--line:#e2e8f0;--green:#14804a;--red:#c53030;--amber:#b7791f;--shadow:0 12px 32px rgba(24,56,92,.08)}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+    .login-shell{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 10% 15%,#2c6c93 0,transparent 34%),linear-gradient(135deg,#0c1e35,#173d61 65%,#0b766c)}
+    .login-card{width:min(430px,100%);background:#fff;border-radius:22px;padding:34px;box-shadow:0 24px 70px rgba(0,0,0,.22)}.brand-mark{width:52px;height:52px;border-radius:16px;background:#e5f4f2;color:#087f70;display:grid;place-items:center;font-size:25px;margin-bottom:18px}.login-card h1{font-size:24px;margin:0 0 7px;color:var(--navy)}.login-card p{color:var(--muted);font-size:14px;line-height:1.55;margin:0 0 24px}.field{display:grid;gap:7px;margin:14px 0}.field label{font-size:13px;font-weight:700;color:#42536a}.field input,.field select,.field textarea{width:100%;border:1px solid #d8e0e9;border-radius:10px;padding:11px 12px;background:#fff;outline:none;color:var(--text)}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(43,108,176,.12)}.btn{border:0;border-radius:10px;padding:10px 15px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.15s}.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:#245b96}.btn-dark{background:var(--navy);color:#fff}.btn-light{background:#edf2f7;color:#33465d}.btn-teal{background:#e1f5f1;color:#087f70}.btn-danger{background:#fff0f0;color:#b42318}.btn:disabled{opacity:.55;cursor:not-allowed}.btn-block{width:100%;padding:12px}.small{font-size:12px;color:var(--muted)}
+    .app{display:none;min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:252px;background:var(--navy);color:#fff;padding:22px 16px;display:flex;flex-direction:column;z-index:10}.side-brand{display:flex;align-items:center;gap:12px;padding:5px 8px 24px;border-bottom:1px solid rgba(255,255,255,.12)}.side-logo{width:42px;height:42px;border-radius:13px;background:#1e9a8c;display:grid;place-items:center;font-size:21px}.side-brand strong{font-size:14px;display:block;line-height:1.3}.side-brand span{font-size:11px;color:#b6c7d8}.nav-title{font-size:10px;letter-spacing:1.5px;color:#92a8bf;margin:24px 10px 10px}.nav-btn{width:100%;border:0;background:transparent;color:#d6e1ed;padding:11px 12px;border-radius:10px;text-align:left;display:flex;align-items:center;gap:12px;margin:3px 0;font-weight:600;font-size:13px}.nav-btn:hover,.nav-btn.active{background:#203f61;color:#fff}.nav-icon{width:20px;text-align:center;font-size:16px}.side-bottom{margin-top:auto;padding:14px 8px 4px;border-top:1px solid rgba(255,255,255,.12)}.profile{display:flex;gap:10px;align-items:center;margin-bottom:14px}.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#d8eeeb;color:#0f766e;font-weight:800}.profile strong{font-size:12px;display:block}.profile span{font-size:11px;color:#afc1d3}
+    .main{margin-left:252px;min-height:100vh}.topbar{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:5}.topbar h2{font-size:17px;margin:0;color:var(--navy)}.topbar-right{display:flex;align-items:center;gap:10px}.live-dot{width:8px;height:8px;background:#16a36a;border-radius:50%;display:inline-block;box-shadow:0 0 0 4px #def7ec}.content{padding:28px 30px 50px;max-width:1440px;margin:auto}.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:22px}.page-head h1{font-size:24px;color:var(--navy);margin:0 0 6px}.page-head p{margin:0;color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.stat-card,.panel{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}.stat-card{padding:19px;display:flex;justify-content:space-between;gap:12px;align-items:center}.stat-label{color:var(--muted);font-size:12px;font-weight:700}.stat-value{font-size:28px;font-weight:800;color:var(--navy);margin-top:6px}.stat-icon{width:44px;height:44px;border-radius:13px;background:#eaf1fa;display:grid;place-items:center;font-size:21px}.panel{padding:20px;margin-top:18px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.panel-head h3{margin:0;color:var(--navy);font-size:15px}.panel-head p{margin:4px 0 0;color:var(--muted);font-size:12px}.table-wrap{width:100%;overflow:auto}table{border-collapse:collapse;width:100%;min-width:760px}th,td{text-align:left;padding:13px 12px;border-bottom:1px solid #edf1f5;font-size:12px;vertical-align:middle}th{font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:#8190a2;background:#f8fafc;font-weight:800}td strong{font-size:12px;color:#21364c}.muted{color:var(--muted)}.status{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:30px;font-size:10px;font-weight:800;white-space:nowrap}.status:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}.status.live{color:#087f50;background:#e4f7ee}.status.stopped{color:#9a5b0b;background:#fff4df}.status.wait{color:#64748b;background:#edf2f7}.actions{display:flex;flex-wrap:wrap;gap:6px}.actions .btn{padding:7px 9px;font-size:11px}.activity-list{display:grid;gap:12px}.activity-item{display:flex;gap:10px;align-items:flex-start}.activity-dot{width:9px;height:9px;border-radius:50%;background:#4d8ac7;margin-top:4px;flex:none}.activity-item strong{font-size:12px;display:block}.activity-item p{margin:3px 0;color:var(--muted);font-size:11px}.split{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}.school-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.school-card{border:1px solid var(--line);border-radius:13px;padding:16px;background:#fff}.school-card h3{margin:0 0 5px;font-size:14px;color:var(--navy)}.school-card .meta{font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:12px}.school-card .actions{margin-top:12px}.notice{padding:13px 15px;background:#fff8e8;color:#805b16;border:1px solid #f5dfa9;border-radius:11px;font-size:12px;line-height:1.55;margin:14px 0}.empty{padding:36px 18px;text-align:center;color:var(--muted);font-size:13px}.empty b{display:block;color:#34485e;margin-bottom:5px}.modal-backdrop{position:fixed;inset:0;background:rgba(7,20,36,.54);display:grid;place-items:center;padding:20px;z-index:30}.modal{background:#fff;border-radius:17px;width:min(620px,100%);max-height:92vh;overflow:auto;box-shadow:0 25px 70px rgba(0,0,0,.25)}.modal-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--line)}.modal-head h3{font-size:16px;margin:0;color:var(--navy)}.modal-body{padding:20px 22px}.modal-foot{padding:15px 22px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.checkline{display:flex;gap:9px;align-items:flex-start;font-size:12px;line-height:1.5;color:#52647a;margin:14px 0}.checkline input{margin-top:2px}.toast-wrap{position:fixed;right:22px;top:86px;z-index:60;display:grid;gap:8px}.toast{background:#18385c;color:#fff;border-radius:10px;padding:12px 15px;box-shadow:var(--shadow);font-size:12px;max-width:360px}.toast.error{background:#9b2727}.recording-link{display:inline-flex;align-items:center;gap:6px;font-weight:700}.footnote{font-size:11px;color:var(--muted);line-height:1.6;margin-top:18px}.hidden{display:none!important}
+    @media(max-width:1050px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}.school-grid{grid-template-columns:1fr}}
+    @media(max-width:760px){.sidebar{position:static;width:auto;height:auto;padding:12px;display:block}.side-brand{padding:4px 5px 12px}.sidebar nav{display:flex;gap:5px;overflow:auto;padding-top:10px}.nav-title,.side-bottom{display:none}.nav-btn{min-width:max-content;width:auto;padding:9px 10px;margin:0}.main{margin-left:0}.topbar{height:58px;padding:0 16px}.content{padding:20px 14px 35px}.page-head{display:block}.page-head .btn{margin-top:12px}.grid{gap:9px}.stat-card{padding:13px}.stat-value{font-size:23px}.stat-icon{width:36px;height:36px}.form-grid{grid-template-columns:1fr}.panel{padding:15px}.topbar-right .small{display:none}}
+  </style>
+</head>
+<body>
+  <section id="loginScreen" class="login-shell">
+    <div class="login-card">
+      <div class="brand-mark">▣</div>
+      <h1>Monitoring Ujian Semester</h1>
+      <p>Portal pengawasan ujian antar-sekolah berbasis Google Meet dengan dokumentasi dan penyimpanan terpusat di Google Drive.</p>
+      <form id="loginForm">
+        <div class="field"><label for="username">Nama pengguna</label><input id="username" autocomplete="username" required placeholder="Masukkan nama pengguna"></div>
+        <div class="field"><label for="password">Kata sandi</label><input id="password" type="password" autocomplete="current-password" required placeholder="Masukkan kata sandi"></div>
+        <button id="loginButton" class="btn btn-primary btn-block" type="submit">Masuk ke Dashboard</button>
+      </form>
+      <p class="small" style="margin:18px 0 0">Akses hanya untuk administrator dan pengawas yang telah didaftarkan.</p>
+    </div>
+  </section>
+
+  <div id="app" class="app">
+    <aside class="sidebar">
+      <div class="side-brand"><div class="side-logo">▣</div><div><strong>MONITORING UJIAN</strong><span>Portal Pengawas Semester</span></div></div>
+      <div class="nav-title">MENU UTAMA</div>
+      <nav>
+        <button class="nav-btn active" data-page="dashboard"><span class="nav-icon">▦</span>Dashboard</button>
+        <button class="nav-btn" data-page="schools"><span class="nav-icon">🏫</span>Data Sekolah</button>
+        <button class="nav-btn" data-page="live"><span class="nav-icon">◉</span>Pantau Live</button>
+        <button class="nav-btn" data-page="recordings"><span class="nav-icon">▶</span>Rekaman Drive</button>
+        <button class="nav-btn admin-only" data-page="users"><span class="nav-icon">♙</span>Pengguna</button>
+      </nav>
+      <div class="side-bottom">
+        <div class="profile"><div class="avatar" id="profileInitial">A</div><div><strong id="profileName">Administrator</strong><span id="profileRole">ADMIN</span></div></div>
+        <button class="nav-btn" id="logoutButton"><span class="nav-icon">↪</span>Keluar</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><h2 id="topTitle">Ringkasan Monitoring</h2><div class="topbar-right"><span class="live-dot"></span><span class="small">Terhubung ke server data</span><button class="btn btn-light" id="refreshButton">↻ Perbarui</button></div></header>
+      <div class="content" id="pageContent"></div>
+    </main>
+  </div>
+
+  <div id="modalRoot"></div><div id="toastWrap" class="toast-wrap"></div>
+  <script>
+    // Ganti URL ini dengan URL Web App Apps Script yang berakhiran /exec.
+    const GAS_URL = 'GANTI_URL_WEB_APP_APPS_SCRIPT/exec';
+    const APP_ORIGIN = window.location.origin;
+    const state = { token: sessionStorage.getItem('monitorToken') || '', user: null, page: 'dashboard', schools: [], users: [], stats: {}, logs: [], databaseFileUrl: '' };
+    const pending = new Map();
+
+    function api(action, data={}) {
+      return new Promise((resolve, reject) => {
+        if (!GAS_URL.startsWith('https://script.google.com/')) {
+          reject(new Error('Isi GAS_URL di index.html dengan URL Web App Apps Script yang benar.')); return;
+        }
+        const requestId = 'r' + Date.now().toString(36) + Math.random().toString(36).slice(2);
+        const frameName = 'apiFrame_' + requestId;
+        const frame = document.createElement('iframe');
+        frame.name = frameName; frame.style.display = 'none'; frame.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(frame);
+        const timer = setTimeout(() => {
+          pending.delete(requestId); frame.remove(); reject(new Error('Server tidak merespons. Periksa URL Apps Script dan deployment.'));
+        }, 35000);
+        pending.set(requestId, {resolve, reject, frame, timer});
+        const form = document.createElement('form'); form.method = 'POST'; form.action = GAS_URL; form.target = frameName; form.style.display = 'none';
+        const input = document.createElement('textarea'); input.name = 'payload';
+        input.value = JSON.stringify({requestId, action, data, token: state.token, origin: APP_ORIGIN});
+        form.appendChild(input); document.body.appendChild(form); form.submit();
+        setTimeout(() => form.remove(), 500);
+      });
+    }
+
+    window.addEventListener('message', event => {
+      const msg = event.data;
+      if (!msg || msg.type !== 'MONITORING_UJIAN_API_RESULT' || !msg.requestId) return;
+      const item = pending.get(msg.requestId); if (!item) return;
+      if (event.source !== item.frame.contentWindow) return;
+      clearTimeout(item.timer); pending.delete(msg.requestId); item.frame.remove();
+      item.resolve(msg.result || {ok:false, message:'Respons server kosong.'});
+    });
+
+    function toast(message, error=false) {
+      const el = document.createElement('div'); el.className = 'toast' + (error ? ' error' : ''); el.textContent = message;
+      document.getElementById('toastWrap').appendChild(el); setTimeout(() => el.remove(), 4800);
+    }
+    function esc(value) { return String(value == null ? '' : value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function formatDate(value) { if (!value) return '-'; const d = new Date(value.length === 10 ? value + 'T00:00:00' : value); return isNaN(d) ? value : d.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}); }
+    function formatTime(value) { return value || '-'; }
+    function statusBadge(status) {
+      if (status === 'LIVE') return '<span class="status live">SEDANG LIVE</span>';
+      if (status === 'STOPPED') return '<span class="status stopped">DIHENTIKAN</span>';
+      return '<span class="status wait">BELUM DIMULAI</span>';
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async e => {
+      e.preventDefault(); const button = document.getElementById('loginButton'); button.disabled = true; button.textContent = 'Memeriksa...';
+      try {
+        const res = await api('login', {username:document.getElementById('username').value, password:document.getElementById('password').value});
+        if (!res.ok) throw new Error(res.message || 'Login gagal.');
+        state.token = res.token; state.user = res.user; sessionStorage.setItem('monitorToken', state.token);
+        document.getElementById('profileName').textContent = state.user.name;
+        document.getElementById('profileRole').textContent = state.user.role;
+        document.getElementById('profileInitial').textContent = (state.user.name || 'A').charAt(0).toUpperCase();
+        document.querySelectorAll('.admin-only').forEach(el => el.classList.toggle('hidden', state.user.role !== 'ADMIN'));
+        document.getElementById('loginScreen').style.display = 'none'; document.getElementById('app').style.display = 'block';
+        await refreshData(); toast('Selamat datang, ' + state.user.name + '.'); startPolling();
+      } catch(err) { toast(err.message, true); }
+      finally { button.disabled = false; button.textContent = 'Masuk ke Dashboard'; }
+    });
+
+    document.getElementById('logoutButton').addEventListener('click', async () => {
+      try { await api('logout'); } catch(e) {}
+      state.token = ''; state.user = null; sessionStorage.removeItem('monitorToken');
+      document.getElementById('app').style.display = 'none'; document.getElementById('loginScreen').style.display = 'grid';
+      document.getElementById('password').value = '';
+    });
+
+    document.querySelectorAll('.nav-btn[data-page]').forEach(btn => btn.addEventListener('click', () => showPage(btn.dataset.page)));
+    document.getElementById('refreshButton').addEventListener('click', refreshData);
+    let pollTimer = null;
+    function startPolling() { if (pollTimer) clearInterval(pollTimer); pollTimer = setInterval(refreshData, 20000); }
+
+    async function refreshData() {
+      if (!state.token) return;
+      const btn = document.getElementById('refreshButton'); if (btn) { btn.disabled = true; btn.textContent = '↻ Memuat'; }
+      try {
+        const res = await api('dashboard');
+        if (!res.ok) throw new Error(res.message || 'Gagal memuat data.');
+        state.user = res.user || state.user; state.schools = res.schools || []; state.users = res.users || [];
+        state.stats = res.stats || {}; state.logs = res.logs || []; state.databaseFileUrl = res.databaseFileUrl || '';
+        renderPage();
+      } catch(err) {
+        if (/Sesi berakhir|Sesi tidak ditemukan/.test(err.message)) { toast(err.message, true); document.getElementById('logoutButton').click(); }
+        else toast(err.message, true);
+      } finally { if (btn) { btn.disabled = false; btn.textContent = '↻ Perbarui'; } }
+    }
+
+    function showPage(page) {
+      if (page === 'users' && state.user.role !== 'ADMIN') return;
+      state.page = page;
+      document.querySelectorAll('.nav-btn[data-page]').forEach(btn => btn.classList.toggle('active', btn.dataset.page === page));
+      renderPage();
+    }
+
+    function renderPage() {
+      const titles = {dashboard:'Ringkasan Monitoring',schools:'Data Sekolah',live:'Pantau Live',recordings:'Rekaman Google Drive',users:'Manajemen Pengguna'};
+      document.getElementById('topTitle').textContent = titles[state.page] || 'Monitoring Ujian';
+      const root = document.getElementById('pageContent');
+      if (state.page === 'dashboard') root.innerHTML = renderDashboard();
+      if (state.page === 'schools') root.innerHTML = renderSchools();
+      if (state.page === 'live') root.innerHTML = renderLive();
+      if (state.page === 'recordings') root.innerHTML = renderRecordings();
+      if (state.page === 'users') root.innerHTML = renderUsers();
+      attachPageEvents();
+    }
+
+    function renderDashboard() {
+      const s = state.stats;
+      return `<div class="page-head"><div><h1>Dashboard Monitoring</h1><p>Pusat kendali pengawasan ujian semester antar-sekolah.</p></div>${state.user.role==='ADMIN'?'<button class="btn btn-primary" id="addSchoolBtn">＋ Tambah Sekolah</button>':''}</div>
+      <div class="grid">
+        <div class="stat-card"><div><div class="stat-label">TOTAL SEKOLAH</div><div class="stat-value">${s.totalSchools||0}</div></div><div class="stat-icon">🏫</div></div>
+        <div class="stat-card"><div><div class="stat-label">RUANG SEDANG LIVE</div><div class="stat-value">${s.live||0}</div></div><div class="stat-icon">📡</div></div>
+        <div class="stat-card"><div><div class="stat-label">MONITORING DIHENTIKAN</div><div class="stat-value">${s.stopped||0}</div></div><div class="stat-icon">⏹</div></div>
+        <div class="stat-card"><div><div class="stat-label">REKAMAN SIAP DIBUKA</div><div class="stat-value">${s.recordings||0}</div></div><div class="stat-icon">🎬</div></div>
+      </div>
+      <div class="split">
+        <section class="panel"><div class="panel-head"><div><h3>Daftar Ruang Ujian</h3><p>Status ruang diperbarui dari Google Meet setiap 20 detik saat dashboard terbuka.</p></div><button class="btn btn-light" id="goLiveBtn">Lihat Semua</button></div>${state.schools.length?`<div class="table-wrap"><table><thead><tr><th>Sekolah</th><th>Jadwal Ujian</th><th>Status</th><th>Ruang</th></tr></thead><tbody>${state.schools.slice(0,7).map(school=>`<tr><td><strong>${esc(school.schoolName)}</strong><br><span class="muted">${esc(school.district||'')}</span></td><td>${esc(school.examName)}<br><span class="muted">${formatDate(school.examDate)} · ${esc(formatTime(school.startTime))}</span></td><td>${statusBadge(school.monitoringStatus)}</td><td>${school.meetUrl?`<a href="${esc(school.meetUrl)}" target="_blank" rel="noopener">Buka Meet ↗</a>`:'<span class="muted">Belum tersedia</span>'}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty"><b>Belum ada data sekolah</b>Tambahkan sekolah untuk membuat ruang ujian.</div>'}</section>
+        <section class="panel"><div class="panel-head"><div><h3>Aktivitas Terbaru</h3><p>Riwayat tindakan admin dan pengawas.</p></div></div>${renderLogs()}</section>
+      </div>
+      <div class="notice"><b>Informasi rekaman:</b> Perekaman otomatis dijalankan oleh Google Meet, bukan browser GitHub. Host harus bergabung dan memiliki hak rekam. Peserta akan mendapatkan indikator/notifikasi bahwa rapat direkam. Periksa juga kelayakan akun Workspace dan kapasitas Drive.</div>
+      <p class="footnote">Database JSON tersimpan di Google Drive. ${state.databaseFileUrl?`<a href="${esc(state.databaseFileUrl)}" target="_blank" rel="noopener">Buka file database JSON ↗</a>`:''}</p>`;
+    }
+
+    function renderLogs() {
+      if (!state.logs.length) return '<div class="empty">Belum ada aktivitas yang tercatat.</div>';
+      return `<div class="activity-list">${state.logs.slice(0,8).map(log=>`<div class="activity-item"><span class="activity-dot"></span><div><strong>${esc(log.action)} · ${esc(log.by)}</strong><p>${esc(log.detail)} · ${new Date(log.at).toLocaleString('id-ID')}</p></div></div>`).join('')}</div>`;
+    }
+
+    function renderSchools() {
+      return `<div class="page-head"><div><h1>Data Sekolah</h1><p>Kelola lokasi ujian, nama pengawas, jadwal dan tautan ruang Google Meet.</p></div>${state.user.role==='ADMIN'?'<button class="btn btn-primary" id="addSchoolBtn">＋ Tambah Sekolah</button>':''}</div>
+      <section class="panel"><div class="panel-head"><div><h3>Daftar Sekolah Terdaftar</h3><p>${state.schools.length} sekolah tersimpan di database.</p></div></div>${state.schools.length?`<div class="table-wrap"><table><thead><tr><th>Nama Sekolah</th><th>Pengawas</th><th>Mata Ujian</th><th>Jadwal</th><th>Status</th><th>Google Meet</th><th>Aksi</th></tr></thead><tbody>${state.schools.map(s=>`<tr><td><strong>${esc(s.schoolName)}</strong><br><span class="muted">${esc(s.district||'')}</span></td><td>${esc(s.supervisor||'-')}</td><td>${esc(s.examName||'-')}</td><td>${formatDate(s.examDate)}<br><span class="muted">${esc(s.startTime||'-')}</span></td><td>${statusBadge(s.monitoringStatus)}</td><td>${s.meetUrl?`<a href="${esc(s.meetUrl)}" target="_blank" rel="noopener">Buka ruang ↗</a>`:'<span class="muted">Belum dibuat</span>'}${s.autoRecordingRequested?'<br><span class="small">Perekaman otomatis diminta</span>':''}</td><td><div class="actions"><button class="btn btn-light" data-monitor="${esc(s.id)}">Pantau</button>${state.user.role==='ADMIN'?`<button class="btn btn-danger" data-delete="${esc(s.id)}">Hapus</button>`:''}</div></td></tr>`).join('')}</tbody></table></div>`:'<div class="empty"><b>Belum ada sekolah</b>Gunakan tombol Tambah Sekolah untuk memulai.</div>'}</section>`;
+    }
+
+    function renderLive() {
+      return `<div class="page-head"><div><h1>Pantau Ruang Ujian Secara Live</h1><p>Status ruang diambil dari Google Meet. Klik Buka Google Meet untuk melihat video dan audio langsung.</p></div><button class="btn btn-light" id="refreshMeetBtn">↻ Sinkronkan Status</button></div>
+      <div class="notice"><b>Cara kerja:</b> Tampilan video Google Meet dibuka di tab Google Meet tersendiri dan tidak ditanam di dalam GitHub Pages. Status LIVE muncul ketika Google Meet mendeteksi konferensi aktif. Tombol Hentikan Monitoring akan mengakhiri konferensi aktif untuk ruang tersebut.</div>
+      ${state.schools.length?`<div class="school-grid">${state.schools.map(s=>`<article class="school-card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h3>${esc(s.schoolName)}</h3>${statusBadge(s.monitoringStatus)}</div><div class="meta">${esc(s.district||'Lokasi belum diisi')}<br>${esc(s.examName)} · ${formatDate(s.examDate)} · ${esc(s.startTime||'-')}<br>Pengawas: ${esc(s.supervisor||'-')}</div><div class="actions">${s.meetUrl?`<a class="btn btn-primary" href="${esc(s.meetUrl)}" target="_blank" rel="noopener">↗ Buka Google Meet</a>`:'<button class="btn btn-light" disabled>Link Meet belum tersedia</button>'}${s.monitoringStatus==='LIVE'?`<button class="btn btn-danger" data-stop="${esc(s.id)}">⏹ Hentikan Monitoring</button>`:''}</div>${s.lastSyncError?`<p class="small" style="color:#b42318;margin:9px 0 0">${esc(s.lastSyncError)}</p>`:''}</article>`).join('')}</div>`:'<section class="panel"><div class="empty"><b>Belum ada ruang untuk dipantau</b>Tambahkan sekolah dan buat ruang Meet terlebih dahulu.</div></section>'}`;
+    }
+
+    function renderRecordings() {
+      const rows=[]; state.schools.forEach(s => (s.recordings || []).forEach(r => rows.push({school:s.schoolName, recording:r})));
+      return `<div class="page-head"><div><h1>Rekaman Google Drive</h1><p>Daftar tautan rekaman yang telah selesai dibuat oleh Google Meet.</p></div><button class="btn btn-primary" id="syncRecordingsBtn">↻ Perbarui Rekaman</button></div>
+      <div class="notice">Rekaman baru dapat muncul beberapa saat setelah rapat berakhir. Tautan rekaman berasal dari Google Drive penyelenggara rapat; pastikan akun pengawas diberi izin untuk membukanya.</div>
+      <section class="panel"><div class="panel-head"><div><h3>Arsip Rekaman</h3><p>${rows.length} rekaman ditemukan pada sinkronisasi terakhir.</p></div></div>${rows.length?`<div class="table-wrap"><table><thead><tr><th>Sekolah</th><th>Mulai</th><th>Selesai</th><th>Status File</th><th>Tautan</th></tr></thead><tbody>${rows.map(x=>`<tr><td><strong>${esc(x.school)}</strong></td><td>${x.recording.startTime?new Date(x.recording.startTime).toLocaleString('id-ID'):'-'}</td><td>${x.recording.endTime?new Date(x.recording.endTime).toLocaleString('id-ID'):'-'}</td><td>${x.recording.state==='FILE_GENERATED'?'<span class="status live">SIAP</span>':`<span class="status wait">${esc(x.recording.state)}</span>`}</td><td>${x.recording.url?`<a class="recording-link" href="${esc(x.recording.url)}" target="_blank" rel="noopener">▶ Buka rekaman ↗</a>`:'<span class="muted">Menunggu file dibuat Google Meet</span>'}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty"><b>Belum ada rekaman yang ditemukan</b>Pastikan rapat sudah direkam dan sudah berakhir, lalu klik Perbarui Rekaman.</div>'}</section>`;
+    }
+
+    function renderUsers() {
+      return `<div class="page-head"><div><h1>Manajemen Pengguna</h1><p>Buat akun administrator atau pengawas untuk mengakses portal.</p></div><button class="btn btn-primary" id="addUserBtn">＋ Tambah Pengguna</button></div>
+      <section class="panel"><div class="panel-head"><div><h3>Pengguna Terdaftar</h3><p>Kata sandi tidak ditampilkan di halaman ini.</p></div></div>${state.users.length?`<div class="table-wrap"><table><thead><tr><th>Nama</th><th>Nama Pengguna</th><th>Peran</th><th>Dibuat</th></tr></thead><tbody>${state.users.map(u=>`<tr><td><strong>${esc(u.name)}</strong></td><td>${esc(u.username)}</td><td>${u.role==='ADMIN'?'<span class="status live">ADMIN</span>':'<span class="status wait">PENGAWAS</span>'}</td><td>${u.createdAt?new Date(u.createdAt).toLocaleDateString('id-ID'):'-'}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">Belum ada pengguna lain.</div>'}</section>`;
+    }
+
+    function attachPageEvents() {
+      const addSchool = document.getElementById('addSchoolBtn'); if (addSchool) addSchool.addEventListener('click', openSchoolModal);
+      const addUser = document.getElementById('addUserBtn'); if (addUser) addUser.addEventListener('click', openUserModal);
+      const goLive = document.getElementById('goLiveBtn'); if (goLive) goLive.addEventListener('click', () => showPage('live'));
+      const refreshMeet = document.getElementById('refreshMeetBtn'); if (refreshMeet) refreshMeet.addEventListener('click', refreshData);
+      const sync = document.getElementById('syncRecordingsBtn'); if (sync) sync.addEventListener('click', syncRecordings);
+      document.querySelectorAll('[data-monitor]').forEach(btn => btn.addEventListener('click', () => { showPage('live'); }));
+      document.querySelectorAll('[data-stop]').forEach(btn => btn.addEventListener('click', () => stopMonitoring(btn.dataset.stop)));
+      document.querySelectorAll('[data-delete]').forEach(btn => btn.addEventListener('click', () => deleteSchool(btn.dataset.delete)));
+    }
+
+    function modal(title, body, submitLabel='Simpan') {
+      const root = document.getElementById('modalRoot');
+      root.innerHTML = `<div class="modal-backdrop" id="modalBackdrop"><div class="modal"><div class="modal-head"><h3>${title}</h3><button class="btn btn-light" id="closeModalBtn">✕</button></div>${body}</div></div>`;
+      document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+      document.getElementById('modalBackdrop').addEventListener('click', e => { if (e.target.id === 'modalBackdrop') closeModal(); });
+    }
+    function closeModal(){ document.getElementById('modalRoot').innerHTML=''; }
+
+    function openSchoolModal() {
+      modal('Tambah Data Sekolah', `<form id="schoolForm"><div class="modal-body"><div class="form-grid">
+        <div class="field"><label>Nama Sekolah *</label><input name="schoolName" required maxlength="140" placeholder="SD Negeri ..."></div>
+        <div class="field"><label>Kecamatan / Kabupaten</label><input name="district" maxlength="120" placeholder="Wilayah sekolah"></div>
+        <div class="field"><label>Nama Pengawas</label><input name="supervisor" maxlength="100" placeholder="Nama pengawas"></div>
+        <div class="field"><label>Mata Ujian / Kegiatan</label><input name="examName" value="Ujian Semester" maxlength="140"></div>
+        <div class="field"><label>Tanggal Ujian</label><input name="examDate" type="date"></div>
+        <div class="field"><label>Jam Mulai</label><input name="startTime" type="time"></div>
+      </div>
+      <div class="field"><label>Catatan</label><textarea name="notes" rows="2" placeholder="Informasi tambahan"></textarea></div>
+      <label class="checkline"><input type="checkbox" name="createMeet" checked><span><b>Buat ruang Google Meet otomatis</b><br>Ruang dibuat melalui Google Meet API dan link disimpan ke database.</span></label>
+      <label class="checkline"><input type="checkbox" name="autoRecord" checked><span><b>Minta perekaman otomatis</b><br>Google Meet akan mengatur auto-record bila akun dan kebijakan Workspace mendukung.</span></label>
+      <label class="checkline"><input type="checkbox" name="consentConfirmed"><span>Saya memastikan sekolah telah memberikan pemberitahuan dan memperoleh persetujuan yang diperlukan untuk perekaman peserta ujian.</span></label>
+      </div><div class="modal-foot"><button type="button" class="btn btn-light" id="cancelSchool">Batal</button><button class="btn btn-primary" id="saveSchoolBtn" type="submit">Simpan Sekolah</button></div></form>`);
+      document.getElementById('cancelSchool').addEventListener('click', closeModal);
+      document.getElementById('schoolForm').addEventListener('submit', async e=>{
+        e.preventDefault(); const form=e.currentTarget; const v=Object.fromEntries(new FormData(form).entries());
+        const createMeet=form.elements.createMeet.checked; const autoRecord=form.elements.autoRecord.checked;
+        if(autoRecord && !form.elements.consentConfirmed.checked){toast('Centang konfirmasi pemberitahuan dan persetujuan perekaman.',true);return;}
+        const btn=document.getElementById('saveSchoolBtn');btn.disabled=true;btn.textContent='Menyimpan...';
+        try{const res=await api('saveSchool',{...v,createMeet,autoRecord,consentConfirmed:form.elements.consentConfirmed.checked});if(!res.ok)throw new Error(res.message);closeModal();toast(res.message);await refreshData();}
+        catch(err){toast(err.message,true);}finally{btn.disabled=false;btn.textContent='Simpan Sekolah';}
+      });
+    }
+
+    function openUserModal() {
+      modal('Tambah Akun Pengguna', `<form id="userForm"><div class="modal-body"><div class="field"><label>Nama lengkap *</label><input name="name" required maxlength="100"></div><div class="field"><label>Nama pengguna *</label><input name="username" required maxlength="60" autocomplete="off"></div><div class="field"><label>Kata sandi (minimal 10 karakter) *</label><input name="password" type="password" required minlength="10" autocomplete="new-password"></div><div class="field"><label>Peran</label><select name="role"><option value="SUPERVISOR">Pengawas</option><option value="ADMIN">Administrator</option></select></div></div><div class="modal-foot"><button type="button" class="btn btn-light" id="cancelUser">Batal</button><button class="btn btn-primary" id="saveUserBtn" type="submit">Buat Akun</button></div></form>`);
+      document.getElementById('cancelUser').addEventListener('click',closeModal);
+      document.getElementById('userForm').addEventListener('submit',async e=>{e.preventDefault();const v=Object.fromEntries(new FormData(e.currentTarget).entries());const btn=document.getElementById('saveUserBtn');btn.disabled=true;btn.textContent='Menyimpan...';try{const res=await api('createUser',v);if(!res.ok)throw new Error(res.message);closeModal();toast(res.message);await refreshData();}catch(err){toast(err.message,true);}finally{btn.disabled=false;btn.textContent='Buat Akun';}});
+    }
+
+    async function stopMonitoring(id) {
+      const school=state.schools.find(s=>s.id===id); if(!school)return;
+      if(!confirm('Hentikan monitoring untuk ' + school.schoolName + '? Tindakan ini akan mencoba mengakhiri sesi Google Meet aktif untuk seluruh peserta di ruang tersebut.'))return;
+      try{const res=await api('stopMonitoring',{schoolId:id});if(!res.ok)throw new Error(res.message);toast(res.message);await refreshData();}
+      catch(err){toast(err.message,true);}
+    }
+    async function deleteSchool(id) {
+      const school=state.schools.find(s=>s.id===id); if(!school)return;
+      if(!confirm('Hapus data ' + school.schoolName + ' dari aplikasi? Ruang Meet dan file rekaman di Drive tidak ikut dihapus.'))return;
+      try{const res=await api('deleteSchool',{schoolId:id});if(!res.ok)throw new Error(res.message);toast(res.message);await refreshData();}
+      catch(err){toast(err.message,true);}
+    }
+    async function syncRecordings(){try{const res=await api('refreshRecordings');if(!res.ok)throw new Error(res.message);toast(res.message);await refreshData();}catch(err){toast(err.message,true);}}
+
+    // Coba pulihkan sesi selama tab browser masih terbuka.
+    if (state.token) {
+      document.getElementById('loginScreen').style.display='none';
+      document.getElementById('app').style.display='block';
+      api('dashboard').then(res=>{
+        if(!res.ok)throw new Error(res.message);
+        state.user=res.user;state.schools=res.schools||[];state.users=res.users||[];state.stats=res.stats||{};state.logs=res.logs||[];state.databaseFileUrl=res.databaseFileUrl||'';
+        document.getElementById('profileName').textContent=state.user.name;document.getElementById('profileRole').textContent=state.user.role;document.getElementById('profileInitial').textContent=(state.user.name||'A').charAt(0).toUpperCase();
+        document.querySelectorAll('.admin-only').forEach(el=>el.classList.toggle('hidden',state.user.role!=='ADMIN'));
+        renderPage();startPolling();
+      }).catch(()=>{state.token='';sessionStorage.removeItem('monitorToken');document.getElementById('app').style.display='none';document.getElementById('loginScreen').style.display='grid';});
+    }
+  </script>
+</body>
+</html>
