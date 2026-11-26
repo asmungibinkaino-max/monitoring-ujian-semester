@@ -1,294 +1,1812 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10233f">
-  <title>Monitoring Pengawas Ujian Semester</title>
-  <style>
-    :root{--navy:#10233f;--navy2:#18385c;--blue:#2b6cb0;--teal:#0f9d8a;--bg:#f3f6fa;--card:#fff;--text:#1d2b3c;--muted:#718096;--line:#e2e8f0;--green:#14804a;--red:#c53030;--amber:#b7791f;--shadow:0 12px 32px rgba(24,56,92,.08)}
-    *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
-    .login-shell{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 10% 15%,#2c6c93 0,transparent 34%),linear-gradient(135deg,#0c1e35,#173d61 65%,#0b766c)}
-    .login-card{width:min(430px,100%);background:#fff;border-radius:22px;padding:34px;box-shadow:0 24px 70px rgba(0,0,0,.22)}.brand-mark{width:52px;height:52px;border-radius:16px;background:#e5f4f2;color:#087f70;display:grid;place-items:center;font-size:25px;margin-bottom:18px}.login-card h1{font-size:24px;margin:0 0 7px;color:var(--navy)}.login-card p{color:var(--muted);font-size:14px;line-height:1.55;margin:0 0 24px}.field{display:grid;gap:7px;margin:14px 0}.field label{font-size:13px;font-weight:700;color:#42536a}.field input,.field select,.field textarea{width:100%;border:1px solid #d8e0e9;border-radius:10px;padding:11px 12px;background:#fff;outline:none;color:var(--text)}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(43,108,176,.12)}.btn{border:0;border-radius:10px;padding:10px 15px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.15s}.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:#245b96}.btn-dark{background:var(--navy);color:#fff}.btn-light{background:#edf2f7;color:#33465d}.btn-teal{background:#e1f5f1;color:#087f70}.btn-danger{background:#fff0f0;color:#b42318}.btn:disabled{opacity:.55;cursor:not-allowed}.btn-block{width:100%;padding:12px}.small{font-size:12px;color:var(--muted)}
-    .app{display:none;min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:252px;background:var(--navy);color:#fff;padding:22px 16px;display:flex;flex-direction:column;z-index:10}.side-brand{display:flex;align-items:center;gap:12px;padding:5px 8px 24px;border-bottom:1px solid rgba(255,255,255,.12)}.side-logo{width:42px;height:42px;border-radius:13px;background:#1e9a8c;display:grid;place-items:center;font-size:21px}.side-brand strong{font-size:14px;display:block;line-height:1.3}.side-brand span{font-size:11px;color:#b6c7d8}.nav-title{font-size:10px;letter-spacing:1.5px;color:#92a8bf;margin:24px 10px 10px}.nav-btn{width:100%;border:0;background:transparent;color:#d6e1ed;padding:11px 12px;border-radius:10px;text-align:left;display:flex;align-items:center;gap:12px;margin:3px 0;font-weight:600;font-size:13px}.nav-btn:hover,.nav-btn.active{background:#203f61;color:#fff}.nav-icon{width:20px;text-align:center;font-size:16px}.side-bottom{margin-top:auto;padding:14px 8px 4px;border-top:1px solid rgba(255,255,255,.12)}.profile{display:flex;gap:10px;align-items:center;margin-bottom:14px}.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#d8eeeb;color:#0f766e;font-weight:800}.profile strong{font-size:12px;display:block}.profile span{font-size:11px;color:#afc1d3}
-    .main{margin-left:252px;min-height:100vh}.topbar{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:5}.topbar h2{font-size:17px;margin:0;color:var(--navy)}.topbar-right{display:flex;align-items:center;gap:10px}.live-dot{width:8px;height:8px;background:#16a36a;border-radius:50%;display:inline-block;box-shadow:0 0 0 4px #def7ec}.content{padding:28px 30px 50px;max-width:1440px;margin:auto}.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:22px}.page-head h1{font-size:24px;color:var(--navy);margin:0 0 6px}.page-head p{margin:0;color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.stat-card,.panel{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}.stat-card{padding:19px;display:flex;justify-content:space-between;gap:12px;align-items:center}.stat-label{color:var(--muted);font-size:12px;font-weight:700}.stat-value{font-size:28px;font-weight:800;color:var(--navy);margin-top:6px}.stat-icon{width:44px;height:44px;border-radius:13px;background:#eaf1fa;display:grid;place-items:center;font-size:21px}.panel{padding:20px;margin-top:18px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.panel-head h3{margin:0;color:var(--navy);font-size:15px}.panel-head p{margin:4px 0 0;color:var(--muted);font-size:12px}.table-wrap{width:100%;overflow:auto}table{border-collapse:collapse;width:100%;min-width:760px}th,td{text-align:left;padding:13px 12px;border-bottom:1px solid #edf1f5;font-size:12px;vertical-align:middle}th{font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:#8190a2;background:#f8fafc;font-weight:800}td strong{font-size:12px;color:#21364c}.muted{color:var(--muted)}.status{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:30px;font-size:10px;font-weight:800;white-space:nowrap}.status:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}.status.live{color:#087f50;background:#e4f7ee}.status.stopped{color:#9a5b0b;background:#fff4df}.status.wait{color:#64748b;background:#edf2f7}.actions{display:flex;flex-wrap:wrap;gap:6px}.actions .btn{padding:7px 9px;font-size:11px}.activity-list{display:grid;gap:12px}.activity-item{display:flex;gap:10px;align-items:flex-start}.activity-dot{width:9px;height:9px;border-radius:50%;background:#4d8ac7;margin-top:4px;flex:none}.activity-item strong{font-size:12px;display:block}.activity-item p{margin:3px 0;color:var(--muted);font-size:11px}.split{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}.school-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.school-card{border:1px solid var(--line);border-radius:13px;padding:16px;background:#fff}.school-card h3{margin:0 0 5px;font-size:14px;color:var(--navy)}.school-card .meta{font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:12px}.school-card .actions{margin-top:12px}.notice{padding:13px 15px;background:#fff8e8;color:#805b16;border:1px solid #f5dfa9;border-radius:11px;font-size:12px;line-height:1.55;margin:14px 0}.empty{padding:36px 18px;text-align:center;color:var(--muted);font-size:13px}.empty b{display:block;color:#34485e;margin-bottom:5px}.modal-backdrop{position:fixed;inset:0;background:rgba(7,20,36,.54);display:grid;place-items:center;padding:20px;z-index:30}.modal{background:#fff;border-radius:17px;width:min(620px,100%);max-height:92vh;overflow:auto;box-shadow:0 25px 70px rgba(0,0,0,.25)}.modal-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--line)}.modal-head h3{font-size:16px;margin:0;color:var(--navy)}.modal-body{padding:20px 22px}.modal-foot{padding:15px 22px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.checkline{display:flex;gap:9px;align-items:flex-start;font-size:12px;line-height:1.5;color:#52647a;margin:14px 0}.checkline input{margin-top:2px}.toast-wrap{position:fixed;right:22px;top:86px;z-index:60;display:grid;gap:8px}.toast{background:#18385c;color:#fff;border-radius:10px;padding:12px 15px;box-shadow:var(--shadow);font-size:12px;max-width:360px}.toast.error{background:#9b2727}.recording-link{display:inline-flex;align-items:center;gap:6px;font-weight:700}.footnote{font-size:11px;color:var(--muted);line-height:1.6;margin-top:18px}.hidden{display:none!important}
-    @media(max-width:1050px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}.school-grid{grid-template-columns:1fr}}
-    @media(max-width:760px){.sidebar{position:static;width:auto;height:auto;padding:12px;display:block}.side-brand{padding:4px 5px 12px}.sidebar nav{display:flex;gap:5px;overflow:auto;padding-top:10px}.nav-title,.side-bottom{display:none}.nav-btn{min-width:max-content;width:auto;padding:9px 10px;margin:0}.main{margin-left:0}.topbar{height:58px;padding:0 16px}.content{padding:20px 14px 35px}.page-head{display:block}.page-head .btn{margin-top:12px}.grid{gap:9px}.stat-card{padding:13px}.stat-value{font-size:23px}.stat-icon{width:36px;height:36px}.form-grid{grid-template-columns:1fr}.panel{padding:15px}.topbar-right .small{display:none}}
-  </style>
-</head>
-<body>
-  <section id="loginScreen" class="login-shell">
-    <div class="login-card">
-      <div class="brand-mark">▣</div>
-      <h1>Monitoring Ujian Semester</h1>
-      <p>Portal pengawasan ujian antar-sekolah berbasis Google Meet dengan dokumentasi dan penyimpanan terpusat di Google Drive.</p>
-      <form id="loginForm">
-        <div class="field"><label for="username">Nama pengguna</label><input id="username" autocomplete="username" required placeholder="Masukkan nama pengguna"></div>
-        <div class="field"><label for="password">Kata sandi</label><input id="password" type="password" autocomplete="current-password" required placeholder="Masukkan kata sandi"></div>
-        <button id="loginButton" class="btn btn-primary btn-block" type="submit">Masuk ke Dashboard</button>
-      </form>
-      <p class="small" style="margin:18px 0 0">Akses hanya untuk administrator dan pengawas yang telah didaftarkan.</p>
-    </div>
-  </section>
-
-  <div id="app" class="app">
-    <aside class="sidebar">
-      <div class="side-brand"><div class="side-logo">▣</div><div><strong>MONITORING UJIAN</strong><span>Portal Pengawas Semester</span></div></div>
-      <div class="nav-title">MENU UTAMA</div>
-      <nav>
-        <button class="nav-btn active" data-page="dashboard"><span class="nav-icon">▦</span>Dashboard</button>
-        <button class="nav-btn" data-page="schools"><span class="nav-icon">🏫</span>Data Sekolah</button>
-        <button class="nav-btn" data-page="live"><span class="nav-icon">◉</span>Pantau Live</button>
-        <button class="nav-btn" data-page="recordings"><span class="nav-icon">▶</span>Rekaman Drive</button>
-        <button class="nav-btn admin-only" data-page="users"><span class="nav-icon">♙</span>Pengguna</button>
-      </nav>
-      <div class="side-bottom">
-        <div class="profile"><div class="avatar" id="profileInitial">A</div><div><strong id="profileName">Administrator</strong><span id="profileRole">ADMIN</span></div></div>
-        <button class="nav-btn" id="logoutButton"><span class="nav-icon">↪</span>Keluar</button>
-      </div>
-    </aside>
-
-    <main class="main">
-      <header class="topbar"><h2 id="topTitle">Ringkasan Monitoring</h2><div class="topbar-right"><span class="live-dot"></span><span class="small">Terhubung ke server data</span><button class="btn btn-light" id="refreshButton">↻ Perbarui</button></div></header>
-      <div class="content" id="pageContent"></div>
-    </main>
-  </div>
-
-  <div id="modalRoot"></div><div id="toastWrap" class="toast-wrap"></div>
-  <script>
-    // Ganti URL ini dengan URL Web App Apps Script yang berakhiran /exec.
-    const GAS_URL = 'GANTI_URL_WEB_APP_APPS_SCRIPT/exec';
-    const APP_ORIGIN = window.location.origin;
-    const state = { token: sessionStorage.getItem('monitorToken') || '', user: null, page: 'dashboard', schools: [], users: [], stats: {}, logs: [], databaseFileUrl: '' };
-    const pending = new Map();
-
-    function api(action, data={}) {
-      return new Promise((resolve, reject) => {
-        if (!GAS_URL.startsWith('https://script.google.com/')) {
-          reject(new Error('Isi GAS_URL di index.html dengan URL Web App Apps Script yang benar.')); return;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMON-UJIAN | Sistem Monitoring Pengawas Ujian Semester</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- SheetJS (XLSX) untuk Baca & Tulis File Excel (.xlsx / .xls / .csv) secara otomatis -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
         }
-        const requestId = 'r' + Date.now().toString(36) + Math.random().toString(36).slice(2);
-        const frameName = 'apiFrame_' + requestId;
-        const frame = document.createElement('iframe');
-        frame.name = frameName; frame.style.display = 'none'; frame.setAttribute('aria-hidden', 'true');
-        document.body.appendChild(frame);
-        const timer = setTimeout(() => {
-          pending.delete(requestId); frame.remove(); reject(new Error('Server tidak merespons. Periksa URL Apps Script dan deployment.'));
-        }, 35000);
-        pending.set(requestId, {resolve, reject, frame, timer});
-        const form = document.createElement('form'); form.method = 'POST'; form.action = GAS_URL; form.target = frameName; form.style.display = 'none';
-        const input = document.createElement('textarea'); input.name = 'payload';
-        input.value = JSON.stringify({requestId, action, data, token: state.token, origin: APP_ORIGIN});
-        form.appendChild(input); document.body.appendChild(form); form.submit();
-        setTimeout(() => form.remove(), 500);
-      });
-    }
+        /* Custom scrollbar untuk tabel dan daftar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .pulse-live {
+            animation: pulse-ring 2s infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col">
 
-    window.addEventListener('message', event => {
-      const msg = event.data;
-      if (!msg || msg.type !== 'MONITORING_UJIAN_API_RESULT' || !msg.requestId) return;
-      const item = pending.get(msg.requestId); if (!item) return;
-      if (event.source !== item.frame.contentWindow) return;
-      clearTimeout(item.timer); pending.delete(msg.requestId); item.frame.remove();
-      item.resolve(msg.result || {ok:false, message:'Respons server kosong.'});
-    });
+    <!-- ========================================== -->
+    <!-- HALAMAN LOGIN (PENGAWAS & SEKOLAH)         -->
+    <!-- ========================================== -->
+    <div id="login-screen" class="min-h-screen bg-gradient-to-br from-indigo-950 via-indigo-900 to-slate-900 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden border border-indigo-100">
+            <!-- Header Login -->
+            <div class="bg-indigo-900 text-white p-6 text-center relative overflow-hidden">
+                <div class="w-14 h-14 bg-indigo-800 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-inner border border-indigo-700">
+                    <i data-lucide="shield-check" class="w-8 h-8 text-emerald-400"></i>
+                </div>
+                <h1 class="text-xl font-bold tracking-tight">SIMON-UJIAN</h1>
+                <p class="text-xs text-indigo-200 mt-1">Portal Monitoring Ujian Semester • 26 Sekolah</p>
+            </div>
 
-    function toast(message, error=false) {
-      const el = document.createElement('div'); el.className = 'toast' + (error ? ' error' : ''); el.textContent = message;
-      document.getElementById('toastWrap').appendChild(el); setTimeout(() => el.remove(), 4800);
-    }
-    function esc(value) { return String(value == null ? '' : value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-    function formatDate(value) { if (!value) return '-'; const d = new Date(value.length === 10 ? value + 'T00:00:00' : value); return isNaN(d) ? value : d.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}); }
-    function formatTime(value) { return value || '-'; }
-    function statusBadge(status) {
-      if (status === 'LIVE') return '<span class="status live">SEDANG LIVE</span>';
-      if (status === 'STOPPED') return '<span class="status stopped">DIHENTIKAN</span>';
-      return '<span class="status wait">BELUM DIMULAI</span>';
-    }
+            <!-- Form Login -->
+            <div class="p-6 sm:p-8">
+                <!-- Pilihan Peran (Role Switcher) -->
+                <div class="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-xl mb-6">
+                    <button type="button" onclick="selectLoginRole('pengawas')" id="role-btn-pengawas" class="py-2.5 px-3 rounded-lg text-sm font-semibold bg-white text-indigo-700 shadow-sm flex items-center justify-center space-x-1.5 transition">
+                        <i data-lucide="user-check" class="w-4 h-4"></i>
+                        <span>Pengawas</span>
+                    </button>
+                    <button type="button" onclick="selectLoginRole('sekolah')" id="role-btn-sekolah" class="py-2.5 px-3 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 flex items-center justify-center space-x-1.5 transition">
+                        <i data-lucide="school" class="w-4 h-4"></i>
+                        <span>Sekolah</span>
+                    </button>
+                </div>
 
-    document.getElementById('loginForm').addEventListener('submit', async e => {
-      e.preventDefault(); const button = document.getElementById('loginButton'); button.disabled = true; button.textContent = 'Memeriksa...';
-      try {
-        const res = await api('login', {username:document.getElementById('username').value, password:document.getElementById('password').value});
-        if (!res.ok) throw new Error(res.message || 'Login gagal.');
-        state.token = res.token; state.user = res.user; sessionStorage.setItem('monitorToken', state.token);
-        document.getElementById('profileName').textContent = state.user.name;
-        document.getElementById('profileRole').textContent = state.user.role;
-        document.getElementById('profileInitial').textContent = (state.user.name || 'A').charAt(0).toUpperCase();
-        document.querySelectorAll('.admin-only').forEach(el => el.classList.toggle('hidden', state.user.role !== 'ADMIN'));
-        document.getElementById('loginScreen').style.display = 'none'; document.getElementById('app').style.display = 'block';
-        await refreshData(); toast('Selamat datang, ' + state.user.name + '.'); startPolling();
-      } catch(err) { toast(err.message, true); }
-      finally { button.disabled = false; button.textContent = 'Masuk ke Dashboard'; }
-    });
+                <form onsubmit="handleLogin(event)" class="space-y-4">
+                    <!-- Input Khusus Pengawas -->
+                    <div id="login-field-pengawas" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Username / NIP Pengawas</label>
+                            <div class="relative">
+                                <input type="text" id="login-pengawas-user" value="pengawas" placeholder="Masukkan username pengawas" class="w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                <i data-lucide="user" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
+                            </div>
+                        </div>
+                    </div>
 
-    document.getElementById('logoutButton').addEventListener('click', async () => {
-      try { await api('logout'); } catch(e) {}
-      state.token = ''; state.user = null; sessionStorage.removeItem('monitorToken');
-      document.getElementById('app').style.display = 'none'; document.getElementById('loginScreen').style.display = 'grid';
-      document.getElementById('password').value = '';
-    });
+                    <!-- Input Khusus Sekolah -->
+                    <div id="login-field-sekolah" class="hidden space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Pilih Sekolah (26 Sekolah)</label>
+                            <select id="login-school-select" class="w-full px-3 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none bg-white">
+                                <!-- Opsi 26 sekolah diisi otomatis oleh JS -->
+                            </select>
+                        </div>
+                    </div>
 
-    document.querySelectorAll('.nav-btn[data-page]').forEach(btn => btn.addEventListener('click', () => showPage(btn.dataset.page)));
-    document.getElementById('refreshButton').addEventListener('click', refreshData);
-    let pollTimer = null;
-    function startPolling() { if (pollTimer) clearInterval(pollTimer); pollTimer = setInterval(refreshData, 20000); }
+                    <!-- Password (Berlaku untuk Pengawas maupun Sekolah) -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Kata Sandi / PIN Akses</label>
+                        <div class="relative">
+                            <input type="password" id="login-password" value="123456" required placeholder="Masukkan kata sandi" class="w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                            <i data-lucide="lock" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
+                        </div>
+                    </div>
 
-    async function refreshData() {
-      if (!state.token) return;
-      const btn = document.getElementById('refreshButton'); if (btn) { btn.disabled = true; btn.textContent = '↻ Memuat'; }
-      try {
-        const res = await api('dashboard');
-        if (!res.ok) throw new Error(res.message || 'Gagal memuat data.');
-        state.user = res.user || state.user; state.schools = res.schools || []; state.users = res.users || [];
-        state.stats = res.stats || {}; state.logs = res.logs || []; state.databaseFileUrl = res.databaseFileUrl || '';
-        renderPage();
-      } catch(err) {
-        if (/Sesi berakhir|Sesi tidak ditemukan/.test(err.message)) { toast(err.message, true); document.getElementById('logoutButton').click(); }
-        else toast(err.message, true);
-      } finally { if (btn) { btn.disabled = false; btn.textContent = '↻ Perbarui'; } }
-    }
+                    <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-sm shadow-md transition flex items-center justify-center space-x-2 mt-2">
+                        <span>Masuk ke Aplikasi</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </form>
 
-    function showPage(page) {
-      if (page === 'users' && state.user.role !== 'ADMIN') return;
-      state.page = page;
-      document.querySelectorAll('.nav-btn[data-page]').forEach(btn => btn.classList.toggle('active', btn.dataset.page === page));
-      renderPage();
-    }
+                <!-- Kredit Pengembang Aplikasi -->
+                <div class="mt-6 pt-4 border-t border-slate-100 text-center">
+                    <p class="text-xs font-medium text-slate-600">
+                        Aplikasi ini dibuat dan dikembangkan oleh <span class="font-bold text-indigo-700">Fahmi Abdul Rozak</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    function renderPage() {
-      const titles = {dashboard:'Ringkasan Monitoring',schools:'Data Sekolah',live:'Pantau Live',recordings:'Rekaman Google Drive',users:'Manajemen Pengguna'};
-      document.getElementById('topTitle').textContent = titles[state.page] || 'Monitoring Ujian';
-      const root = document.getElementById('pageContent');
-      if (state.page === 'dashboard') root.innerHTML = renderDashboard();
-      if (state.page === 'schools') root.innerHTML = renderSchools();
-      if (state.page === 'live') root.innerHTML = renderLive();
-      if (state.page === 'recordings') root.innerHTML = renderRecordings();
-      if (state.page === 'users') root.innerHTML = renderUsers();
-      attachPageEvents();
-    }
+    <!-- ========================================== -->
+    <!-- APLIKASI UTAMA (DITAMPILKAN SETELAH LOGIN) -->
+    <!-- ========================================== -->
+    <div id="main-app" class="hidden min-h-screen flex flex-col">
 
-    function renderDashboard() {
-      const s = state.stats;
-      return `<div class="page-head"><div><h1>Dashboard Monitoring</h1><p>Pusat kendali pengawasan ujian semester antar-sekolah.</p></div>${state.user.role==='ADMIN'?'<button class="btn btn-primary" id="addSchoolBtn">＋ Tambah Sekolah</button>':''}</div>
-      <div class="grid">
-        <div class="stat-card"><div><div class="stat-label">TOTAL SEKOLAH</div><div class="stat-value">${s.totalSchools||0}</div></div><div class="stat-icon">🏫</div></div>
-        <div class="stat-card"><div><div class="stat-label">RUANG SEDANG LIVE</div><div class="stat-value">${s.live||0}</div></div><div class="stat-icon">📡</div></div>
-        <div class="stat-card"><div><div class="stat-label">MONITORING DIHENTIKAN</div><div class="stat-value">${s.stopped||0}</div></div><div class="stat-icon">⏹</div></div>
-        <div class="stat-card"><div><div class="stat-label">REKAMAN SIAP DIBUKA</div><div class="stat-value">${s.recordings||0}</div></div><div class="stat-icon">🎬</div></div>
-      </div>
-      <div class="split">
-        <section class="panel"><div class="panel-head"><div><h3>Daftar Ruang Ujian</h3><p>Status ruang diperbarui dari Google Meet setiap 20 detik saat dashboard terbuka.</p></div><button class="btn btn-light" id="goLiveBtn">Lihat Semua</button></div>${state.schools.length?`<div class="table-wrap"><table><thead><tr><th>Sekolah</th><th>Jadwal Ujian</th><th>Status</th><th>Ruang</th></tr></thead><tbody>${state.schools.slice(0,7).map(school=>`<tr><td><strong>${esc(school.schoolName)}</strong><br><span class="muted">${esc(school.district||'')}</span></td><td>${esc(school.examName)}<br><span class="muted">${formatDate(school.examDate)} · ${esc(formatTime(school.startTime))}</span></td><td>${statusBadge(school.monitoringStatus)}</td><td>${school.meetUrl?`<a href="${esc(school.meetUrl)}" target="_blank" rel="noopener">Buka Meet ↗</a>`:'<span class="muted">Belum tersedia</span>'}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty"><b>Belum ada data sekolah</b>Tambahkan sekolah untuk membuat ruang ujian.</div>'}</section>
-        <section class="panel"><div class="panel-head"><div><h3>Aktivitas Terbaru</h3><p>Riwayat tindakan admin dan pengawas.</p></div></div>${renderLogs()}</section>
-      </div>
-      <div class="notice"><b>Informasi rekaman:</b> Perekaman otomatis dijalankan oleh Google Meet, bukan browser GitHub. Host harus bergabung dan memiliki hak rekam. Peserta akan mendapatkan indikator/notifikasi bahwa rapat direkam. Periksa juga kelayakan akun Workspace dan kapasitas Drive.</div>
-      <p class="footnote">Database JSON tersimpan di Google Drive. ${state.databaseFileUrl?`<a href="${esc(state.databaseFileUrl)}" target="_blank" rel="noopener">Buka file database JSON ↗</a>`:''}</p>`;
-    }
+        <!-- Navbar Utama -->
+        <header class="bg-indigo-900 text-white shadow-md sticky top-0 z-30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-indigo-700 p-2 rounded-lg">
+                        <i data-lucide="video" class="w-6 h-6 text-emerald-400"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <h1 class="font-bold text-lg leading-tight tracking-tight">SIMON-UJIAN</h1>
+                            <span id="header-role-badge" class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">Pengawas</span>
+                            <span id="cloud-sync-badge" class="hidden sm:inline-flex items-center text-[10px] font-medium px-2 py-0.5 rounded-full bg-indigo-800 text-indigo-200 border border-indigo-700">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mr-1.5"></span>Menghubungkan...
+                            </span>
+                        </div>
+                        <p id="header-user-subtitle" class="text-xs text-indigo-200 hidden sm:block">Monitoring Pengawas Ujian Semester (26 Sekolah • 3 Hari)</p>
+                    </div>
+                </div>
+                
+                <!-- Navigasi Tab & Tombol Keluar -->
+                <div class="flex items-center space-x-1 sm:space-x-2">
+                    <nav id="main-nav-tabs" class="flex space-x-1 sm:space-x-2">
+                        <button onclick="switchTab('monitoring')" id="tab-monitoring" class="nav-btn bg-indigo-800 text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition">
+                            <i data-lucide="monitor-play" class="w-4 h-4"></i>
+                            <span class="hidden sm:inline">Monitoring</span>
+                        </button>
+                        <button onclick="switchTab('panduan')" id="tab-panduan" class="nav-btn text-indigo-200 hover:bg-indigo-800 hover:text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition">
+                            <i data-lucide="book-open" class="w-4 h-4"></i>
+                            <span class="hidden sm:inline">Panduan SOP</span>
+                        </button>
+                        <button onclick="switchTab('integrasi')" id="tab-integrasi" class="nav-btn text-indigo-200 hover:bg-indigo-800 hover:text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition">
+                            <i data-lucide="database" class="w-4 h-4"></i>
+                            <span class="hidden md:inline">Drive & Sheet</span>
+                        </button>
+                        <button onclick="switchTab('backup')" id="tab-backup" class="nav-btn text-indigo-200 hover:bg-indigo-800 hover:text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition">
+                            <i data-lucide="hard-drive-download" class="w-4 h-4"></i>
+                            <span class="hidden md:inline">Backup & Excel</span>
+                        </button>
+                    </nav>
 
-    function renderLogs() {
-      if (!state.logs.length) return '<div class="empty">Belum ada aktivitas yang tercatat.</div>';
-      return `<div class="activity-list">${state.logs.slice(0,8).map(log=>`<div class="activity-item"><span class="activity-dot"></span><div><strong>${esc(log.action)} · ${esc(log.by)}</strong><p>${esc(log.detail)} · ${new Date(log.at).toLocaleString('id-ID')}</p></div></div>`).join('')}</div>`;
-    }
+                    <div class="h-6 w-px bg-indigo-700 mx-1"></div>
 
-    function renderSchools() {
-      return `<div class="page-head"><div><h1>Data Sekolah</h1><p>Kelola lokasi ujian, nama pengawas, jadwal dan tautan ruang Google Meet.</p></div>${state.user.role==='ADMIN'?'<button class="btn btn-primary" id="addSchoolBtn">＋ Tambah Sekolah</button>':''}</div>
-      <section class="panel"><div class="panel-head"><div><h3>Daftar Sekolah Terdaftar</h3><p>${state.schools.length} sekolah tersimpan di database.</p></div></div>${state.schools.length?`<div class="table-wrap"><table><thead><tr><th>Nama Sekolah</th><th>Pengawas</th><th>Mata Ujian</th><th>Jadwal</th><th>Status</th><th>Google Meet</th><th>Aksi</th></tr></thead><tbody>${state.schools.map(s=>`<tr><td><strong>${esc(s.schoolName)}</strong><br><span class="muted">${esc(s.district||'')}</span></td><td>${esc(s.supervisor||'-')}</td><td>${esc(s.examName||'-')}</td><td>${formatDate(s.examDate)}<br><span class="muted">${esc(s.startTime||'-')}</span></td><td>${statusBadge(s.monitoringStatus)}</td><td>${s.meetUrl?`<a href="${esc(s.meetUrl)}" target="_blank" rel="noopener">Buka ruang ↗</a>`:'<span class="muted">Belum dibuat</span>'}${s.autoRecordingRequested?'<br><span class="small">Perekaman otomatis diminta</span>':''}</td><td><div class="actions"><button class="btn btn-light" data-monitor="${esc(s.id)}">Pantau</button>${state.user.role==='ADMIN'?`<button class="btn btn-danger" data-delete="${esc(s.id)}">Hapus</button>`:''}</div></td></tr>`).join('')}</tbody></table></div>`:'<div class="empty"><b>Belum ada sekolah</b>Gunakan tombol Tambah Sekolah untuk memulai.</div>'}</section>`;
-    }
+                    <button onclick="logout()" class="px-3 py-2 bg-red-500/20 hover:bg-red-600 text-red-200 hover:text-white rounded-lg text-sm font-medium flex items-center space-x-1.5 transition" title="Keluar / Ganti Akun">
+                        <i data-lucide="log-out" class="w-4 h-4"></i>
+                        <span class="hidden sm:inline">Keluar</span>
+                    </button>
+                </div>
+            </div>
+        </header>
 
-    function renderLive() {
-      return `<div class="page-head"><div><h1>Pantau Ruang Ujian Secara Live</h1><p>Status ruang diambil dari Google Meet. Klik Buka Google Meet untuk melihat video dan audio langsung.</p></div><button class="btn btn-light" id="refreshMeetBtn">↻ Sinkronkan Status</button></div>
-      <div class="notice"><b>Cara kerja:</b> Tampilan video Google Meet dibuka di tab Google Meet tersendiri dan tidak ditanam di dalam GitHub Pages. Status LIVE muncul ketika Google Meet mendeteksi konferensi aktif. Tombol Hentikan Monitoring akan mengakhiri konferensi aktif untuk ruang tersebut.</div>
-      ${state.schools.length?`<div class="school-grid">${state.schools.map(s=>`<article class="school-card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h3>${esc(s.schoolName)}</h3>${statusBadge(s.monitoringStatus)}</div><div class="meta">${esc(s.district||'Lokasi belum diisi')}<br>${esc(s.examName)} · ${formatDate(s.examDate)} · ${esc(s.startTime||'-')}<br>Pengawas: ${esc(s.supervisor||'-')}</div><div class="actions">${s.meetUrl?`<a class="btn btn-primary" href="${esc(s.meetUrl)}" target="_blank" rel="noopener">↗ Buka Google Meet</a>`:'<button class="btn btn-light" disabled>Link Meet belum tersedia</button>'}${s.monitoringStatus==='LIVE'?`<button class="btn btn-danger" data-stop="${esc(s.id)}">⏹ Hentikan Monitoring</button>`:''}</div>${s.lastSyncError?`<p class="small" style="color:#b42318;margin:9px 0 0">${esc(s.lastSyncError)}</p>`:''}</article>`).join('')}</div>`:'<section class="panel"><div class="empty"><b>Belum ada ruang untuk dipantau</b>Tambahkan sekolah dan buat ruang Meet terlebih dahulu.</div></section>'}`;
-    }
+        <!-- Main Content Container -->
+        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
-    function renderRecordings() {
-      const rows=[]; state.schools.forEach(s => (s.recordings || []).forEach(r => rows.push({school:s.schoolName, recording:r})));
-      return `<div class="page-head"><div><h1>Rekaman Google Drive</h1><p>Daftar tautan rekaman yang telah selesai dibuat oleh Google Meet.</p></div><button class="btn btn-primary" id="syncRecordingsBtn">↻ Perbarui Rekaman</button></div>
-      <div class="notice">Rekaman baru dapat muncul beberapa saat setelah rapat berakhir. Tautan rekaman berasal dari Google Drive penyelenggara rapat; pastikan akun pengawas diberi izin untuk membukanya.</div>
-      <section class="panel"><div class="panel-head"><div><h3>Arsip Rekaman</h3><p>${rows.length} rekaman ditemukan pada sinkronisasi terakhir.</p></div></div>${rows.length?`<div class="table-wrap"><table><thead><tr><th>Sekolah</th><th>Mulai</th><th>Selesai</th><th>Status File</th><th>Tautan</th></tr></thead><tbody>${rows.map(x=>`<tr><td><strong>${esc(x.school)}</strong></td><td>${x.recording.startTime?new Date(x.recording.startTime).toLocaleString('id-ID'):'-'}</td><td>${x.recording.endTime?new Date(x.recording.endTime).toLocaleString('id-ID'):'-'}</td><td>${x.recording.state==='FILE_GENERATED'?'<span class="status live">SIAP</span>':`<span class="status wait">${esc(x.recording.state)}</span>`}</td><td>${x.recording.url?`<a class="recording-link" href="${esc(x.recording.url)}" target="_blank" rel="noopener">▶ Buka rekaman ↗</a>`:'<span class="muted">Menunggu file dibuat Google Meet</span>'}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty"><b>Belum ada rekaman yang ditemukan</b>Pastikan rapat sudah direkam dan sudah berakhir, lalu klik Perbarui Rekaman.</div>'}</section>`;
-    }
+            <!-- ========================================== -->
+            <!-- VIEW KHUSUS LOGIN SEKOLAH                  -->
+            <!-- ========================================== -->
+            <div id="view-school-portal" class="hidden max-w-3xl mx-auto space-y-6">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-gradient-to-r from-indigo-800 to-indigo-900 text-white p-6">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <span id="sp-day-slot" class="px-3 py-1 bg-indigo-700/80 rounded-full text-xs font-semibold">Hari 1 • 07:30 - 07:50</span>
+                            <span id="sp-status-badge" class="px-3 py-1 bg-white/10 rounded-full text-xs font-semibold">Belum Dipantau</span>
+                        </div>
+                        <h2 id="sp-school-name" class="text-2xl font-bold mt-3">Nama Sekolah</h2>
+                        <p class="text-indigo-200 text-sm mt-1">Panel Persiapan Room Google Meet & Laporan Kehadiran Peserta Ujian</p>
+                    </div>
 
-    function renderUsers() {
-      return `<div class="page-head"><div><h1>Manajemen Pengguna</h1><p>Buat akun administrator atau pengawas untuk mengakses portal.</p></div><button class="btn btn-primary" id="addUserBtn">＋ Tambah Pengguna</button></div>
-      <section class="panel"><div class="panel-head"><div><h3>Pengguna Terdaftar</h3><p>Kata sandi tidak ditampilkan di halaman ini.</p></div></div>${state.users.length?`<div class="table-wrap"><table><thead><tr><th>Nama</th><th>Nama Pengguna</th><th>Peran</th><th>Dibuat</th></tr></thead><tbody>${state.users.map(u=>`<tr><td><strong>${esc(u.name)}</strong></td><td>${esc(u.username)}</td><td>${u.role==='ADMIN'?'<span class="status live">ADMIN</span>':'<span class="status wait">PENGAWAS</span>'}</td><td>${u.createdAt?new Date(u.createdAt).toLocaleDateString('id-ID'):'-'}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">Belum ada pengguna lain.</div>'}</section>`;
-    }
+                    <form onsubmit="saveSchoolPortalData(event)" class="p-6 space-y-5">
+                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-amber-800 flex items-start space-x-3">
+                            <i data-lucide="clock" class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5"></i>
+                            <div>
+                                <p class="font-bold text-amber-900">Instruksi Untuk Panitia / Proktor Sekolah:</p>
+                                <p class="mt-0.5">Pastikan room <b>Google Meet</b> sudah aktif minimal 5 menit sebelum jadwal pemantauan Anda dimulai. Pengawas akan bergabung selama <b>20 menit</b> untuk memverifikasi ketertiban ruang ujian.</p>
+                            </div>
+                        </div>
 
-    function attachPageEvents() {
-      const addSchool = document.getElementById('addSchoolBtn'); if (addSchool) addSchool.addEventListener('click', openSchoolModal);
-      const addUser = document.getElementById('addUserBtn'); if (addUser) addUser.addEventListener('click', openUserModal);
-      const goLive = document.getElementById('goLiveBtn'); if (goLive) goLive.addEventListener('click', () => showPage('live'));
-      const refreshMeet = document.getElementById('refreshMeetBtn'); if (refreshMeet) refreshMeet.addEventListener('click', refreshData);
-      const sync = document.getElementById('syncRecordingsBtn'); if (sync) sync.addEventListener('click', syncRecordings);
-      document.querySelectorAll('[data-monitor]').forEach(btn => btn.addEventListener('click', () => { showPage('live'); }));
-      document.querySelectorAll('[data-stop]').forEach(btn => btn.addEventListener('click', () => stopMonitoring(btn.dataset.stop)));
-      document.querySelectorAll('[data-delete]').forEach(btn => btn.addEventListener('click', () => deleteSchool(btn.dataset.delete)));
-    }
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Tautan Room Google Meet Aktif</label>
+                            <div class="flex flex-col sm:flex-row gap-2">
+                                <input type="url" id="sp-meet-link" required placeholder="https://meet.google.com/xxx-xxxx-xxx" class="flex-1 px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                <a id="sp-btn-open-meet" href="#" target="_blank" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-medium flex items-center justify-center space-x-1.5 transition shadow-sm">
+                                    <i data-lucide="video" class="w-4 h-4"></i>
+                                    <span>Buka Meet Sekarang</span>
+                                </a>
+                            </div>
+                        </div>
 
-    function modal(title, body, submitLabel='Simpan') {
-      const root = document.getElementById('modalRoot');
-      root.innerHTML = `<div class="modal-backdrop" id="modalBackdrop"><div class="modal"><div class="modal-head"><h3>${title}</h3><button class="btn btn-light" id="closeModalBtn">✕</button></div>${body}</div></div>`;
-      document.getElementById('closeModalBtn').addEventListener('click', closeModal);
-      document.getElementById('modalBackdrop').addEventListener('click', e => { if (e.target.id === 'modalBackdrop') closeModal(); });
-    }
-    function closeModal(){ document.getElementById('modalRoot').innerHTML=''; }
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Nama Pengawas Ruang / Proktor</label>
+                                <input type="text" id="sp-proctor" required placeholder="Contoh: Budi Santoso, S.Pd" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Laporan Kehadiran Siswa</label>
+                                <input type="text" id="sp-attendance" required placeholder="Contoh: 145 / 145 Hadir" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                            </div>
+                        </div>
 
-    function openSchoolModal() {
-      modal('Tambah Data Sekolah', `<form id="schoolForm"><div class="modal-body"><div class="form-grid">
-        <div class="field"><label>Nama Sekolah *</label><input name="schoolName" required maxlength="140" placeholder="SD Negeri ..."></div>
-        <div class="field"><label>Kecamatan / Kabupaten</label><input name="district" maxlength="120" placeholder="Wilayah sekolah"></div>
-        <div class="field"><label>Nama Pengawas</label><input name="supervisor" maxlength="100" placeholder="Nama pengawas"></div>
-        <div class="field"><label>Mata Ujian / Kegiatan</label><input name="examName" value="Ujian Semester" maxlength="140"></div>
-        <div class="field"><label>Tanggal Ujian</label><input name="examDate" type="date"></div>
-        <div class="field"><label>Jam Mulai</label><input name="startTime" type="time"></div>
-      </div>
-      <div class="field"><label>Catatan</label><textarea name="notes" rows="2" placeholder="Informasi tambahan"></textarea></div>
-      <label class="checkline"><input type="checkbox" name="createMeet" checked><span><b>Buat ruang Google Meet otomatis</b><br>Ruang dibuat melalui Google Meet API dan link disimpan ke database.</span></label>
-      <label class="checkline"><input type="checkbox" name="autoRecord" checked><span><b>Minta perekaman otomatis</b><br>Google Meet akan mengatur auto-record bila akun dan kebijakan Workspace mendukung.</span></label>
-      <label class="checkline"><input type="checkbox" name="consentConfirmed"><span>Saya memastikan sekolah telah memberikan pemberitahuan dan memperoleh persetujuan yang diperlukan untuk perekaman peserta ujian.</span></label>
-      </div><div class="modal-foot"><button type="button" class="btn btn-light" id="cancelSchool">Batal</button><button class="btn btn-primary" id="saveSchoolBtn" type="submit">Simpan Sekolah</button></div></form>`);
-      document.getElementById('cancelSchool').addEventListener('click', closeModal);
-      document.getElementById('schoolForm').addEventListener('submit', async e=>{
-        e.preventDefault(); const form=e.currentTarget; const v=Object.fromEntries(new FormData(form).entries());
-        const createMeet=form.elements.createMeet.checked; const autoRecord=form.elements.autoRecord.checked;
-        if(autoRecord && !form.elements.consentConfirmed.checked){toast('Centang konfirmasi pemberitahuan dan persetujuan perekaman.',true);return;}
-        const btn=document.getElementById('saveSchoolBtn');btn.disabled=true;btn.textContent='Menyimpan...';
-        try{const res=await api('saveSchool',{...v,createMeet,autoRecord,consentConfirmed:form.elements.consentConfirmed.checked});if(!res.ok)throw new Error(res.message);closeModal();toast(res.message);await refreshData();}
-        catch(err){toast(err.message,true);}finally{btn.disabled=false;btn.textContent='Simpan Sekolah';}
-      });
-    }
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Catatan / Keterangan Dari Sekolah (Opsional)</label>
+                            <textarea id="sp-notes" rows="3" placeholder="Informasi tambahan untuk pengawas (misal: jumlah ruang aktif, kondisi jaringan, dll)..." class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"></textarea>
+                        </div>
 
-    function openUserModal() {
-      modal('Tambah Akun Pengguna', `<form id="userForm"><div class="modal-body"><div class="field"><label>Nama lengkap *</label><input name="name" required maxlength="100"></div><div class="field"><label>Nama pengguna *</label><input name="username" required maxlength="60" autocomplete="off"></div><div class="field"><label>Kata sandi (minimal 10 karakter) *</label><input name="password" type="password" required minlength="10" autocomplete="new-password"></div><div class="field"><label>Peran</label><select name="role"><option value="SUPERVISOR">Pengawas</option><option value="ADMIN">Administrator</option></select></div></div><div class="modal-foot"><button type="button" class="btn btn-light" id="cancelUser">Batal</button><button class="btn btn-primary" id="saveUserBtn" type="submit">Buat Akun</button></div></form>`);
-      document.getElementById('cancelUser').addEventListener('click',closeModal);
-      document.getElementById('userForm').addEventListener('submit',async e=>{e.preventDefault();const v=Object.fromEntries(new FormData(e.currentTarget).entries());const btn=document.getElementById('saveUserBtn');btn.disabled=true;btn.textContent='Menyimpan...';try{const res=await api('createUser',v);if(!res.ok)throw new Error(res.message);closeModal();toast(res.message);await refreshData();}catch(err){toast(err.message,true);}finally{btn.disabled=false;btn.textContent='Buat Akun';}});
-    }
+                        <!-- Hasil Evaluasi Pengawas (Read-Only untuk Sekolah) -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+                            <div class="text-xs font-bold text-slate-700 uppercase">Status & Bukti Pantauan Pengawas:</div>
+                            <div class="flex flex-wrap items-center justify-between gap-2 text-sm">
+                                <span class="text-slate-600">Status Verifikasi: <b id="sp-eval-status" class="text-slate-900">Belum Dipantau</b></span>
+                                <div id="sp-eval-drive"></div>
+                            </div>
+                        </div>
 
-    async function stopMonitoring(id) {
-      const school=state.schools.find(s=>s.id===id); if(!school)return;
-      if(!confirm('Hentikan monitoring untuk ' + school.schoolName + '? Tindakan ini akan mencoba mengakhiri sesi Google Meet aktif untuk seluruh peserta di ruang tersebut.'))return;
-      try{const res=await api('stopMonitoring',{schoolId:id});if(!res.ok)throw new Error(res.message);toast(res.message);await refreshData();}
-      catch(err){toast(err.message,true);}
-    }
-    async function deleteSchool(id) {
-      const school=state.schools.find(s=>s.id===id); if(!school)return;
-      if(!confirm('Hapus data ' + school.schoolName + ' dari aplikasi? Ruang Meet dan file rekaman di Drive tidak ikut dihapus.'))return;
-      try{const res=await api('deleteSchool',{schoolId:id});if(!res.ok)throw new Error(res.message);toast(res.message);await refreshData();}
-      catch(err){toast(err.message,true);}
-    }
-    async function syncRecordings(){try{const res=await api('refreshRecordings');if(!res.ok)throw new Error(res.message);toast(res.message);await refreshData();}catch(err){toast(err.message,true);}}
+                        <div class="pt-2 flex justify-end">
+                            <button type="submit" class="w-full sm:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-sm shadow-sm transition flex items-center justify-center space-x-2">
+                                <i data-lucide="save" class="w-4 h-4"></i>
+                                <span>Simpan & Perbarui Data Sekolah</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-    // Coba pulihkan sesi selama tab browser masih terbuka.
-    if (state.token) {
-      document.getElementById('loginScreen').style.display='none';
-      document.getElementById('app').style.display='block';
-      api('dashboard').then(res=>{
-        if(!res.ok)throw new Error(res.message);
-        state.user=res.user;state.schools=res.schools||[];state.users=res.users||[];state.stats=res.stats||{};state.logs=res.logs||[];state.databaseFileUrl=res.databaseFileUrl||'';
-        document.getElementById('profileName').textContent=state.user.name;document.getElementById('profileRole').textContent=state.user.role;document.getElementById('profileInitial').textContent=(state.user.name||'A').charAt(0).toUpperCase();
-        document.querySelectorAll('.admin-only').forEach(el=>el.classList.toggle('hidden',state.user.role!=='ADMIN'));
-        renderPage();startPolling();
-      }).catch(()=>{state.token='';sessionStorage.removeItem('monitorToken');document.getElementById('app').style.display='none';document.getElementById('loginScreen').style.display='grid';});
-    }
-  </script>
+            <!-- ========================================== -->
+            <!-- VIEW 1: DASHBOARD MONITORING (PENGAWAS)    -->
+            <!-- ========================================== -->
+            <div id="view-monitoring" class="space-y-6">
+                
+                <!-- Panel Timer Aktif (20 Menit / Sekolah) -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-6">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                        <div class="flex items-start sm:items-center space-x-4">
+                            <div id="timer-status-badge" class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center flex-shrink-0 text-slate-500">
+                                <i data-lucide="timer" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center space-x-2">
+                                    <span id="live-indicator" class="hidden inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-red-100 text-red-700">
+                                        <span class="w-2 h-2 rounded-full bg-red-600 mr-1.5 pulse-live"></span> LIVE PANTAU
+                                    </span>
+                                    <span class="text-xs font-medium text-slate-500 uppercase tracking-wider">Sesi Pemantauan Aktif (Target: 20 Menit)</span>
+                                </div>
+                                <h2 id="active-school-name" class="text-lg sm:text-xl font-bold text-slate-800 mt-0.5">Belum ada sekolah dipantau</h2>
+                                <p id="active-school-meta" class="text-sm text-slate-500">Klik tombol "Mulai Pantau" pada daftar sekolah di bawah untuk memulai hitungan 20 menit.</p>
+                            </div>
+                        </div>
+
+                        <!-- Kontrol Timer -->
+                        <div class="flex flex-wrap items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                            <div class="px-3 py-1 bg-white rounded-lg border border-slate-200 shadow-inner text-center min-w-[110px]">
+                                <div id="timer-display" class="text-2xl sm:text-3xl font-mono font-bold text-indigo-700">20:00</div>
+                                <div class="text-[10px] text-slate-400 font-medium uppercase">Sisa Waktu</div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-2">
+                                <button onclick="toggleTimer()" id="btn-timer-toggle" disabled class="px-3 py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 text-white rounded-lg text-sm font-medium flex items-center space-x-1 transition shadow-sm">
+                                    <i data-lucide="play" class="w-4 h-4"></i>
+                                    <span id="btn-timer-text">Mulai</span>
+                                </button>
+                                <button onclick="resetTimer()" id="btn-timer-reset" disabled class="p-2.5 bg-white hover:bg-slate-100 disabled:opacity-50 text-slate-700 border border-slate-300 rounded-lg transition" title="Reset 20 Menit">
+                                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                                </button>
+                                <a id="btn-active-meet" href="#" target="_blank" class="hidden px-3 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-medium flex items-center space-x-1.5 transition shadow-sm">
+                                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                                    <span>Buka Meet</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistik Ringkas & Filter Hari -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <!-- Filter Hari (Hari 1: 9, Hari 2: 9, Hari 3: 8) -->
+                    <div class="flex flex-wrap gap-2 bg-slate-200/70 p-1.5 rounded-xl w-fit">
+                        <button onclick="filterDay(1)" id="day-btn-1" class="day-filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white text-indigo-700 shadow-sm transition">
+                            Hari 1 <span class="ml-1 text-xs bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded-full">9 Sekolah</span>
+                        </button>
+                        <button onclick="filterDay(2)" id="day-btn-2" class="day-filter-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 transition">
+                            Hari 2 <span class="ml-1 text-xs bg-slate-300/70 text-slate-700 px-1.5 py-0.5 rounded-full">9 Sekolah</span>
+                        </button>
+                        <button onclick="filterDay(3)" id="day-btn-3" class="day-filter-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 transition">
+                            Hari 3 <span class="ml-1 text-xs bg-slate-300/70 text-slate-700 px-1.5 py-0.5 rounded-full">8 Sekolah</span>
+                        </button>
+                        <button onclick="filterDay(0)" id="day-btn-0" class="day-filter-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 transition">
+                            Semua <span class="ml-1 text-xs bg-slate-300/70 text-slate-700 px-1.5 py-0.5 rounded-full">26</span>
+                        </button>
+                    </div>
+
+                    <!-- Ringkasan Progres -->
+                    <div class="flex items-center space-x-4 text-sm bg-white px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm">
+                        <div>
+                            <span class="text-slate-500">Total Selesai:</span>
+                            <span id="stat-completed" class="font-bold text-emerald-600 ml-1">0 / 26</span>
+                        </div>
+                        <div class="h-4 w-px bg-slate-200"></div>
+                        <div>
+                            <span class="text-slate-500">Estimasi Hari Ini:</span>
+                            <span id="stat-duration" class="font-bold text-indigo-600 ml-1">180 Menit (3 Jam)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid Kartu Sekolah -->
+                <div id="school-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Kartu sekolah akan dirender di sini melalui JavaScript -->
+                </div>
+
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIEW 2: PANDUAN OPERASIONAL (SOP)          -->
+            <!-- ========================================== -->
+            <div id="view-panduan" class="hidden space-y-6">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <div class="border-b border-slate-200 pb-5 mb-6">
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold rounded-full uppercase tracking-wide">Standar Operasional Prosedur</span>
+                        <h2 class="text-2xl font-bold text-slate-900 mt-2">Panduan Praktis Monitoring Pengawas Ujian (26 Sekolah)</h2>
+                        <p class="text-slate-600 mt-1">Alur kerja sistematis untuk memantau 26 sekolah selama 3 hari dengan durasi tepat 20 menit per sekolah menggunakan Google Meet, Spreadsheet, dan Google Drive.</p>
+                    </div>
+
+                    <!-- 1. Pembagian Jadwal 3 Hari -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-bold text-slate-800 flex items-center mb-4">
+                            <span class="w-7 h-7 rounded-full bg-indigo-600 text-white text-sm flex items-center justify-center mr-2.5">1</span>
+                            Strategi Pembagian Jadwal (3 Hari)
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <div class="font-bold text-indigo-700 text-base mb-1">Hari Ke-1 (9 Sekolah)</div>
+                                <div class="text-xs text-slate-500 mb-3">Total Durasi Aktif: 180 Menit (3 Jam)</div>
+                                <ul class="text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+                                    <li>Sesi Pagi (07.30 - 09.10): 5 Sekolah</li>
+                                    <li>Jeda / Istirahat: 20 Menit</li>
+                                    <li>Sesi Siang (09.30 - 10.50): 4 Sekolah</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <div class="font-bold text-indigo-700 text-base mb-1">Hari Ke-2 (9 Sekolah)</div>
+                                <div class="text-xs text-slate-500 mb-3">Total Durasi Aktif: 180 Menit (3 Jam)</div>
+                                <ul class="text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+                                    <li>Sesi Pagi (07.30 - 09.10): 5 Sekolah</li>
+                                    <li>Jeda / Istirahat: 20 Menit</li>
+                                    <li>Sesi Siang (09.30 - 10.50): 4 Sekolah</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <div class="font-bold text-emerald-700 text-base mb-1">Hari Ke-3 (8 Sekolah)</div>
+                                <div class="text-xs text-slate-500 mb-3">Total Durasi Aktif: 160 Menit (2 Jam 40 Mnt)</div>
+                                <ul class="text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+                                    <li>Sesi Pagi (07.30 - 08.50): 4 Sekolah</li>
+                                    <li>Jeda / Istirahat: 20 Menit</li>
+                                    <li>Sesi Siang (09.10 - 10.30): 4 Sekolah</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Rincian 20 Menit Per Sekolah -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-bold text-slate-800 flex items-center mb-4">
+                            <span class="w-7 h-7 rounded-full bg-indigo-600 text-white text-sm flex items-center justify-center mr-2.5">2</span>
+                            Manajemen Waktu 20 Menit di Dalam Room Google Meet
+                        </h3>
+                        <div class="bg-indigo-50/60 border border-indigo-100 rounded-xl p-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                                <div class="bg-white p-3.5 rounded-lg shadow-sm border border-indigo-100">
+                                    <span class="text-xs font-bold text-indigo-600 uppercase">Menit 00 - 03</span>
+                                    <h4 class="font-bold text-slate-800 mt-1">Masuk & Verifikasi</h4>
+                                    <p class="text-xs text-slate-600 mt-1">Klik tombol <b>Mulai Pantau</b> & buka Meet. Sapa panitia/pengawas ruang, pastikan kamera menyorot ruangan ujian dengan jelas.</p>
+                                </div>
+                                <div class="bg-white p-3.5 rounded-lg shadow-sm border border-indigo-100">
+                                    <span class="text-xs font-bold text-indigo-600 uppercase">Menit 03 - 15</span>
+                                    <h4 class="font-bold text-slate-800 mt-1">Observasi & Bukti</h4>
+                                    <p class="text-xs text-slate-600 mt-1">Amati ketertiban peserta dan kesiapan pengawas. Ambil <b>1-2 Screenshot</b> layar Google Meet sebagai bukti fisik laporan.</p>
+                                </div>
+                                <div class="bg-white p-3.5 rounded-lg shadow-sm border border-indigo-100">
+                                    <span class="text-xs font-bold text-indigo-600 uppercase">Menit 15 - 18</span>
+                                    <h4 class="font-bold text-slate-800 mt-1">Input Laporan</h4>
+                                    <p class="text-xs text-slate-600 mt-1">Klik <b>Isi Laporan</b> pada kartu sekolah di aplikasi ini. Catat jumlah siswa hadir, kendala teknis, dan status pengawas.</p>
+                                </div>
+                                <div class="bg-white p-3.5 rounded-lg shadow-sm border border-indigo-100">
+                                    <span class="text-xs font-bold text-emerald-600 uppercase">Menit 18 - 20</span>
+                                    <h4 class="font-bold text-slate-800 mt-1">Pamit & Pindah</h4>
+                                    <p class="text-xs text-slate-600 mt-1">Berpamitan di kolom chat Meet agar tidak mengganggu siswa. Tutup tab Meet dan bersiap masuk ke sekolah berikutnya.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Alur Penyimpanan Drive & Spreadsheet -->
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 flex items-center mb-4">
+                            <span class="w-7 h-7 rounded-full bg-indigo-600 text-white text-sm flex items-center justify-center mr-2.5">3</span>
+                            Tata Cara Penyimpanan ke Google Drive & Spreadsheet
+                        </h3>
+                        <div class="space-y-3 text-sm text-slate-700 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                            <div class="flex items-start space-x-3">
+                                <i data-lucide="folder-check" class="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5"></i>
+                                <div>
+                                    <p class="font-semibold text-slate-900">Langkah A: Siapkan Folder Google Drive</p>
+                                    <p class="text-slate-600">Buat folder utama bernama <code class="bg-white px-1.5 py-0.5 rounded border text-xs">Monitoring_Ujian_Semester</code>, lalu buat 3 subfolder di dalamnya: <code class="bg-white px-1.5 py-0.5 rounded border text-xs">Hari_1</code>, <code class="bg-white px-1.5 py-0.5 rounded border text-xs">Hari_2</code>, dan <code class="bg-white px-1.5 py-0.5 rounded border text-xs">Hari_3</code> untuk menyimpan tangkapan layar (screenshot) bukti Google Meet.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i data-lucide="file-spreadsheet" class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+                                <div>
+                                    <p class="font-semibold text-slate-900">Langkah B: Rekap Otomatis ke Google Spreadsheet</p>
+                                    <p class="text-slate-600">Buka tab <b>Drive & Sheet</b> di menu atas aplikasi ini. Anda dapat mengunduh file berformat <b>CSV/Excel</b> atau menyalin tabel langsung (Copy-Paste) ke Google Spreadsheet Anda tanpa perlu mengetik ulang satu per satu.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i data-lucide="link" class="w-5 h-5 text-indigo-600 flex-shrink-0 mt-0.5"></i>
+                                <div>
+                                    <p class="font-semibold text-slate-900">Langkah C: Tautkan Link Bukti Drive</p>
+                                    <p class="text-slate-600">Setelah mengunggah screenshot ke Google Drive, salin link folder/file tersebut dan tempelkan pada kolom <b>Link Bukti Drive</b> di formulir laporan setiap sekolah agar arsip terhubung secara permanen.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIEW 3: INTEGRASI DRIVE & SPREADSHEET      -->
+            <!-- ========================================== -->
+            <div id="view-integrasi" class="hidden space-y-6">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-5 mb-6">
+                        <div>
+                            <h2 class="text-xl font-bold text-slate-900">Rekapitulasi & Ekspor Data (Google Spreadsheet & Drive)</h2>
+                            <p class="text-sm text-slate-500 mt-1">Kelola tautan Google Drive utama dan unduh rekap hasil pemantauan 26 sekolah untuk diunggah ke Spreadsheet.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2.5">
+                            <button onclick="copyTableForSheets()" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-sm font-medium flex items-center space-x-2 transition shadow-sm">
+                                <i data-lucide="copy" class="w-4 h-4"></i>
+                                <span>Salin untuk Spreadsheet</span>
+                            </button>
+                            <button onclick="exportToCSV()" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-medium flex items-center space-x-2 transition shadow-sm">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                                <span>Unduh CSV (Excel/Sheet)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Pengaturan Link Utama Google Drive & Spreadsheet -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Tautan Folder Utama Google Drive (Bukti Foto/Meet)</label>
+                            <div class="flex space-x-2">
+                                <input type="url" id="master-drive-url" placeholder="https://drive.google.com/drive/folders/..." class="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                <button onclick="openMasterLink('master-drive-url')" class="px-3 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg text-sm font-medium flex items-center flex-shrink-0 transition" title="Buka Google Drive">
+                                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Tautan File Google Spreadsheet Master</label>
+                            <div class="flex space-x-2">
+                                <input type="url" id="master-sheet-url" placeholder="https://docs.google.com/spreadsheets/d/..." class="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                <button onclick="openMasterLink('master-sheet-url')" class="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-medium flex items-center flex-shrink-0 transition" title="Buka Google Spreadsheet">
+                                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabel Pratinjau Rekapitulasi -->
+                    <div class="overflow-x-auto border border-slate-200 rounded-xl">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-700 border-b border-slate-200 text-xs uppercase">
+                                    <th class="py-3 px-4 font-semibold">No</th>
+                                    <th class="py-3 px-4 font-semibold">Hari</th>
+                                    <th class="py-3 px-4 font-semibold">Nama Sekolah</th>
+                                    <th class="py-3 px-4 font-semibold">Jadwal</th>
+                                    <th class="py-3 px-4 font-semibold">Status</th>
+                                    <th class="py-3 px-4 font-semibold">Pengawas Ruang</th>
+                                    <th class="py-3 px-4 font-semibold">Kehadiran</th>
+                                    <th class="py-3 px-4 font-semibold">Catatan & Kendala</th>
+                                    <th class="py-3 px-4 font-semibold">Bukti Drive</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rekap-table-body" class="divide-y divide-slate-200 bg-white">
+                                <!-- Baris tabel dirender lewat JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIEW 4: MENU BACKUP & IMPOR EXCEL OTOMATIS -->
+            <!-- ========================================== -->
+            <div id="view-backup" class="hidden space-y-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    <!-- Kartu 1: Ubah Nama Sekolah Otomatis dari Excel -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h2 class="text-lg font-bold text-slate-900">Ubah Nama Sekolah Otomatis dari Excel</h2>
+                                    <p class="text-xs text-slate-500">Perbarui nama 26 sekolah, hari, jam, & link Meet sekaligus lewat file Excel (.xlsx / .csv)</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-600 space-y-2 mb-5">
+                                <p class="font-bold text-slate-800">Cara Mengubah Nama Sekolah, Username & Password via Excel:</p>
+                                <ol class="list-decimal list-inside space-y-1">
+                                    <li>Klik tombol <b>Unduh Template Excel (.xlsx)</b> di bawah ini.</li>
+                                    <li>Buka file di Excel, ubah kolom <b>Nama Sekolah</b>, <b>Username</b>, dan <b>Password</b> untuk masing-masing sekolah (1–26) maupun akun Pengawas.</li>
+                                    <li>Simpan file Excel tersebut, lalu unggah kembali pada area di bawah ini.</li>
+                                    <li>Daftar sekolah beserta kredensial login (Username & Password) otomatis terbarui!</li>
+                                </ol>
+                            </div>
+
+                            <button onclick="downloadExcelTemplate()" class="w-full py-2.5 px-4 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 rounded-xl text-sm font-semibold flex items-center justify-center space-x-2 transition mb-4">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                                <span>1. Unduh Template Excel Daftar Sekolah (.xlsx)</span>
+                            </button>
+
+                            <!-- Dropzone / Input File Excel -->
+                            <label for="excel-upload-input" class="border-2 border-dashed border-indigo-300 hover:border-indigo-500 bg-indigo-50/40 hover:bg-indigo-50 rounded-2xl p-6 text-center cursor-pointer transition flex flex-col items-center justify-center">
+                                <i data-lucide="upload-cloud" class="w-8 h-8 text-indigo-600 mb-2"></i>
+                                <span class="text-sm font-bold text-indigo-900">2. Pilih atau Seret File Excel (.xlsx / .xls / .csv)</span>
+                                <span class="text-xs text-slate-500 mt-1">Data nama sekolah akan otomatis diperbarui & disinkronkan</span>
+                                <input type="file" id="excel-upload-input" accept=".xlsx, .xls, .csv" onchange="handleExcelImport(event)" class="hidden">
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Kartu 2: Backup & Restore Database Penuh -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h2 class="text-lg font-bold text-slate-900">Backup & Restore Data Sistem</h2>
+                                    <p class="text-xs text-slate-500">Cadangkan seluruh laporan pengawasan, catatan, & tautan bukti Drive</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <!-- Backup JSON & Excel -->
+                                <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-3">
+                                    <div class="text-xs font-bold text-slate-700 uppercase">Cadangkan Data (Backup)</div>
+                                    <p class="text-xs text-slate-600">Simpan salinan cadangan seluruh progres pemantauan 26 sekolah ke perangkat Anda untuk keamanan data.</p>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                        <button onclick="downloadFullBackupJSON()" class="py-2.5 px-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 transition shadow-sm">
+                                            <i data-lucide="download-cloud" class="w-4 h-4"></i>
+                                            <span>Backup Penuh (.JSON)</span>
+                                        </button>
+                                        <button onclick="exportToExcelXLSX()" class="py-2.5 px-3 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 transition shadow-sm">
+                                            <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+                                            <span>Backup Laporan (.XLSX)</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Restore JSON -->
+                                <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-3">
+                                    <div class="text-xs font-bold text-slate-700 uppercase">Pulihkan Data (Restore dari File .JSON)</div>
+                                    <p class="text-xs text-slate-600">Unggah file backup <code class="bg-white px-1 border rounded">.json</code> yang pernah diunduh untuk memulihkan seluruh data.</p>
+                                    <label for="json-restore-input" class="w-full py-2.5 px-4 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded-xl text-xs font-semibold flex items-center justify-center space-x-2 cursor-pointer transition">
+                                        <i data-lucide="rotate-ccw" class="w-4 h-4 text-indigo-600"></i>
+                                        <span>Pilih File Backup (.JSON) untuk Restore</span>
+                                        <input type="file" id="json-restore-input" accept=".json" onchange="handleJSONRestore(event)" class="hidden">
+                                    </label>
+                                </div>
+
+                                <!-- Reset Default -->
+                                <div class="pt-2 border-t border-slate-200 flex items-center justify-between">
+                                    <span class="text-xs text-slate-500">Kembalikan daftar sekolah ke pengaturan awal?</span>
+                                    <button onclick="openResetConfirmModal()" class="text-xs font-semibold text-red-600 hover:text-red-700 hover:underline">
+                                        Reset Data Awal
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Modal Konfirmasi Reset Data (Pengganti confirm()) -->
+        <div id="reset-confirm-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl shadow-xl max-w-sm w-full p-6 space-y-4">
+                <div class="flex items-center space-x-3 text-red-600">
+                    <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-900">Reset ke Data Awal?</h3>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">Tindakan ini akan mengembalikan seluruh nama 26 sekolah dan status pemantauan ke pengaturan awal. Pastikan Anda sudah mengunduh file Backup terlebih dahulu.</p>
+                <div class="flex justify-end space-x-2 pt-2">
+                    <button onclick="closeResetConfirmModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold">Batal</button>
+                    <button onclick="executeResetData()" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-semibold">Ya, Reset Data</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- MODAL FORMULIR LAPORAN & EDIT LINK MEET    -->
+        <!-- ========================================== -->
+        <div id="report-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full overflow-hidden animate-fade-in">
+                <div class="bg-indigo-900 text-white px-6 py-4 flex items-center justify-between">
+                    <div>
+                        <span id="modal-day-badge" class="text-xs bg-indigo-700 px-2 py-0.5 rounded font-medium">Hari 1 • 20 Menit</span>
+                        <h3 id="modal-school-title" class="font-bold text-lg mt-0.5">Nama Sekolah</h3>
+                    </div>
+                    <button onclick="closeModal()" class="text-indigo-200 hover:text-white p-1 rounded-lg">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                
+                <form id="report-form" onsubmit="saveSchoolReport(event)" class="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
+                    <input type="hidden" id="modal-school-id">
+                    
+                    <!-- Link Google Meet -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tautan Google Meet Sekolah</label>
+                        <input type="url" id="input-meet-link" required placeholder="https://meet.google.com/xxx-xxxx-xxx" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Nama Pengawas Ruang -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Pengawas / Proktor</label>
+                            <input type="text" id="input-proctor" placeholder="Contoh: Drs. Ahmad" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                        </div>
+                        <!-- Jumlah Kehadiran Siswa -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Kehadiran Siswa</label>
+                            <input type="text" id="input-attendance" placeholder="Contoh: 120 / 120 Hadir" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <!-- Status Pemantauan -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Status Pelaksanaan Ujian</label>
+                        <select id="input-status" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none bg-white">
+                            <option value="Belum Dipantau">Belum Dipantau</option>
+                            <option value="Selesai - Lancar">Selesai - Lancar & Tertib</option>
+                            <option value="Selesai - Ada Kendala">Selesai - Ada Kendala Teknis/Jaringan</option>
+                        </select>
+                    </div>
+
+                    <!-- Catatan Pengawasan -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Catatan Hasil Pemantauan (20 Menit)</label>
+                        <textarea id="input-notes" rows="3" placeholder="Tuliskan kondisi ruang ujian, ketertiban peserta, atau kendala jaringan selama pemantauan..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"></textarea>
+                    </div>
+
+                    <!-- Link Bukti Google Drive -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Link Bukti Screenshot di Google Drive</label>
+                        <input type="url" id="input-drive-link" placeholder="https://drive.google.com/file/d/..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                        <p class="text-[11px] text-slate-400 mt-1">Tempelkan tautan file screenshot Google Meet yang sudah diunggah ke folder Drive.</p>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-200 flex justify-end space-x-2">
+                        <button type="button" onclick="closeModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium transition">Batal</button>
+                        <button type="submit" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium shadow-sm transition">Simpan Laporan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t border-slate-200 py-4 mt-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+                <p>© 2026 Sistem Monitoring Pengawas Ujian Semester • 26 Sekolah Binaan</p>
+                <p class="mt-1 sm:mt-0">Integrasi Google Meet • Google Drive • Google Spreadsheet</p>
+            </div>
+        </footer>
+    </div> <!-- Penutup #main-app -->
+
+    <!-- Custom Toast Notification (Pengganti alert) -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+    <!-- ========================================== -->
+    <!-- LOGIKA JAVASCRIPT & SINKRONISASI CLOUD     -->
+    <!-- ========================================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Data Awal 26 Sekolah yang dibagi menjadi 3 Hari:
+        // Hari 1: 9 Sekolah | Hari 2: 9 Sekolah | Hari 3: 8 Sekolah (Total = 26)
+        const defaultSchoolsData = [
+            // HARI 1 (9 Sekolah)
+            { id: 1, day: 1, timeSlot: "07:30 - 07:50", name: "SMA Negeri 1 Palu", username: "sekolah1", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 2, day: 1, timeSlot: "07:50 - 08:10", name: "SMA Negeri 2 Palu", username: "sekolah2", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 3, day: 1, timeSlot: "08:10 - 08:30", name: "SMA Negeri 3 Palu", username: "sekolah3", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 4, day: 1, timeSlot: "08:30 - 08:50", name: "SMA Negeri 4 Palu", username: "sekolah4", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 5, day: 1, timeSlot: "08:50 - 09:10", name: "SMA Negeri 5 Palu", username: "sekolah5", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 6, day: 1, timeSlot: "09:30 - 09:50", name: "SMA Negeri 6 Palu", username: "sekolah6", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 7, day: 1, timeSlot: "09:50 - 10:10", name: "SMA Negeri 7 Palu", username: "sekolah7", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 8, day: 1, timeSlot: "10:10 - 10:30", name: "SMA Al-Azhar Mandiri", username: "sekolah8", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 9, day: 1, timeSlot: "10:30 - 10:50", name: "SMA Karuna Dipa", username: "sekolah9", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+
+            // HARI 2 (9 Sekolah)
+            { id: 10, day: 2, timeSlot: "07:30 - 07:50", name: "SMK Negeri 1 Palu", username: "sekolah10", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 11, day: 2, timeSlot: "07:50 - 08:10", name: "SMK Negeri 2 Palu", username: "sekolah11", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 12, day: 2, timeSlot: "08:10 - 08:30", name: "SMK Negeri 3 Palu", username: "sekolah12", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 13, day: 2, timeSlot: "08:30 - 08:50", name: "SMK Negeri 4 Palu", username: "sekolah13", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 14, day: 2, timeSlot: "08:50 - 09:10", name: "SMK Negeri 5 Palu", username: "sekolah14", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 15, day: 2, timeSlot: "09:30 - 09:50", name: "SMK Negeri 6 Palu", username: "sekolah15", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 16, day: 2, timeSlot: "09:50 - 10:10", name: "SMK Negeri 7 Palu", username: "sekolah16", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 17, day: 2, timeSlot: "10:10 - 10:30", name: "SMK Muhammadiyah 1", username: "sekolah17", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 18, day: 2, timeSlot: "10:30 - 10:50", name: "SMK Kristen Bala Keselamatan", username: "sekolah18", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+
+            // HARI 3 (8 Sekolah)
+            { id: 19, day: 3, timeSlot: "07:30 - 07:50", name: "MA Negeri 1 Kota Palu", username: "sekolah19", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 20, day: 3, timeSlot: "07:50 - 08:10", name: "MA Negeri 2 Kota Palu", username: "sekolah20", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 21, day: 3, timeSlot: "08:10 - 08:30", name: "SMA Labschool Untad", username: "sekolah21", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 22, day: 3, timeSlot: "08:30 - 08:50", name: "SMA Madani Palu", username: "sekolah22", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 23, day: 3, timeSlot: "09:10 - 09:30", name: "SMA GKST Immanuel", username: "sekolah23", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 24, day: 3, timeSlot: "09:30 - 09:50", name: "SMA Katolik Santo Andreas", username: "sekolah24", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 25, day: 3, timeSlot: "09:50 - 10:10", name: "SMK Yadika Palu", username: "sekolah25", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" },
+            { id: 26, day: 3, timeSlot: "10:10 - 10:30", name: "SMK Bina Potensi Palu", username: "sekolah26", password: "123456", meetLink: "https://meet.google.com/sno-sjpt-ckb", status: "Belum Dipantau", proctor: "", attendance: "", notes: "", driveLink: "" }
+        ];
+
+        let schoolsData = JSON.parse(JSON.stringify(defaultSchoolsData));
+        let pengawasCredentials = { username: "pengawas", password: "123456" };
+
+        // State Aplikasi
+        let currentDayFilter = 1;
+        let activeSchoolId = null;
+        let timerSeconds = 20 * 60; // 20 menit = 1200 detik
+        let timerInterval = null;
+        let isTimerRunning = false;
+
+        // State Autentikasi & Cloud Database
+        let selectedRoleInput = 'pengawas';
+        let currentUser = null; // { role: 'pengawas' | 'sekolah', schoolId: number | null, name: string }
+        let db = null;
+        let cloudUser = null;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'simon-ujian-default';
+
+        // Inisialisasi Cloud Database secara aman
+        async function initCloudSync() {
+            try {
+                if (typeof __firebase_config === 'undefined') {
+                    updateSyncBadge(false, "Mode Lokal");
+                    return;
+                }
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                db = getFirestore(app);
+
+                // Autentikasi terlebih dahulu sebelum query Firestore
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    const cred = await signInWithCustomToken(auth, __initial_auth_token);
+                    cloudUser = cred.user;
+                } else {
+                    const cred = await signInAnonymously(auth);
+                    cloudUser = cred.user;
+                }
+
+                if (!cloudUser) return;
+                updateSyncBadge(true, "Cloud Aktif");
+
+                // Dengarkan perubahan data sekolah secara real-time (Public Data agar Pengawas & 26 Sekolah tersinkronisasi)
+                const schoolsCol = collection(db, 'artifacts', appId, 'public', 'data', 'schools_monitoring');
+                onSnapshot(schoolsCol, (snapshot) => {
+                    let hasNameChanges = false;
+                    snapshot.forEach((docSnap) => {
+                        const cloudItem = docSnap.data();
+                        const idx = schoolsData.findIndex(s => s.id === Number(docSnap.id));
+                        if (idx !== -1) {
+                            if (cloudItem.name && cloudItem.name !== schoolsData[idx].name) {
+                                hasNameChanges = true;
+                            }
+                            schoolsData[idx] = { ...schoolsData[idx], ...cloudItem };
+                        }
+                    });
+
+                    if (hasNameChanges) {
+                        populateSchoolLoginDropdown();
+                    }
+
+                    // Perbarui tampilan secara otomatis jika pengguna sedang login
+                    if (currentUser) {
+                        if (currentUser.role === 'pengawas') {
+                            renderSchools();
+                            updateStats();
+                            renderRekapTable();
+                        } else if (currentUser.role === 'sekolah') {
+                            const mySchool = schoolsData.find(s => s.id === currentUser.schoolId);
+                            if (mySchool) {
+                                document.getElementById('sp-school-name').textContent = `${mySchool.id}. ${mySchool.name}`;
+                                refreshSchoolPortalReadOnlyStatus(mySchool);
+                            }
+                        }
+                    }
+                }, (error) => {
+                    console.error("Gagal sinkronisasi real-time:", error);
+                    updateSyncBadge(false, "Gangguan Jaringan");
+                });
+
+                // Dengarkan pengaturan link Master Drive & Spreadsheet
+                const settingsDoc = doc(db, 'artifacts', appId, 'public', 'data', 'app_settings', 'master_links');
+                onSnapshot(settingsDoc, (docSnap) => {
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        const driveInput = document.getElementById('master-drive-url');
+                        const sheetInput = document.getElementById('master-sheet-url');
+                        if (driveInput && data.driveUrl && document.activeElement !== driveInput) {
+                            driveInput.value = data.driveUrl;
+                        }
+                        if (sheetInput && data.sheetUrl && document.activeElement !== sheetInput) {
+                            sheetInput.value = data.sheetUrl;
+                        }
+                        if (data.pengawasUsername) pengawasCredentials.username = data.pengawasUsername;
+                        if (data.pengawasPassword) pengawasCredentials.password = data.pengawasPassword;
+                    }
+                }, (err) => console.error("Error settings snapshot:", err));
+
+            } catch (err) {
+                console.error("Inisialisasi cloud gagal:", err);
+                updateSyncBadge(false, "Mode Offline");
+            }
+        }
+
+        function updateSyncBadge(isOnline, label) {
+            const badge = document.getElementById('cloud-sync-badge');
+            if (!badge) return;
+            if (isOnline) {
+                badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>${label}`;
+            } else {
+                badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-400 mr-1.5"></span>${label}`;
+            }
+        }
+
+        async function saveSchoolToCloud(schoolObj) {
+            if (!db || !cloudUser) return;
+            try {
+                const schoolRef = doc(db, 'artifacts', appId, 'public', 'data', 'schools_monitoring', String(schoolObj.id));
+                await setDoc(schoolRef, {
+                    name: schoolObj.name || '',
+                    username: schoolObj.username || `sekolah${schoolObj.id}`,
+                    password: schoolObj.password || '123456',
+                    day: schoolObj.day || 1,
+                    timeSlot: schoolObj.timeSlot || '',
+                    meetLink: schoolObj.meetLink || '',
+                    status: schoolObj.status || 'Belum Dipantau',
+                    proctor: schoolObj.proctor || '',
+                    attendance: schoolObj.attendance || '',
+                    notes: schoolObj.notes || '',
+                    driveLink: schoolObj.driveLink || '',
+                    updatedAt: new Date().toISOString()
+                }, { merge: true });
+            } catch (err) {
+                console.error("Gagal menyimpan data sekolah ke cloud:", err);
+                showToast("Tersimpan lokal, gagal menyinkronkan ke cloud.", "warning");
+            }
+        }
+
+        async function saveMasterLinksToCloud() {
+            if (!db || !cloudUser) return;
+            try {
+                const driveUrl = document.getElementById('master-drive-url').value.trim();
+                const sheetUrl = document.getElementById('master-sheet-url').value.trim();
+                const settingsRef = doc(db, 'artifacts', appId, 'public', 'data', 'app_settings', 'master_links');
+                await setDoc(settingsRef, {
+                    driveUrl,
+                    sheetUrl,
+                    pengawasUsername: pengawasCredentials.username,
+                    pengawasPassword: pengawasCredentials.password
+                }, { merge: true });
+            } catch (err) {
+                console.error("Gagal menyimpan link master:", err);
+            }
+        }
+
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            populateSchoolLoginDropdown();
+            lucide.createIcons();
+            renderSchools();
+            updateStats();
+            renderRekapTable();
+            initCloudSync();
+
+            // Simpan otomatis saat input link Master Drive/Sheet diubah
+            document.getElementById('master-drive-url')?.addEventListener('change', saveMasterLinksToCloud);
+            document.getElementById('master-sheet-url')?.addEventListener('change', saveMasterLinksToCloud);
+        });
+
+        // ==========================================
+        // SISTEM LOGIN PENGAWAS & SEKOLAH
+        // ==========================================
+        function populateSchoolLoginDropdown() {
+            const select = document.getElementById('login-school-select');
+            if (!select) return;
+            select.innerHTML = '';
+            schoolsData.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.id;
+                opt.textContent = `${s.id}. ${s.name} (Hari ${s.day} • ${s.timeSlot})`;
+                select.appendChild(opt);
+            });
+        }
+
+        function selectLoginRole(role) {
+            selectedRoleInput = role;
+            const btnPengawas = document.getElementById('role-btn-pengawas');
+            const btnSekolah = document.getElementById('role-btn-sekolah');
+            const fieldPengawas = document.getElementById('login-field-pengawas');
+            const fieldSekolah = document.getElementById('login-field-sekolah');
+
+            if (role === 'pengawas') {
+                btnPengawas.className = "py-2.5 px-3 rounded-lg text-sm font-semibold bg-white text-indigo-700 shadow-sm flex items-center justify-center space-x-1.5 transition";
+                btnSekolah.className = "py-2.5 px-3 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 flex items-center justify-center space-x-1.5 transition";
+                fieldPengawas.classList.remove('hidden');
+                fieldSekolah.classList.add('hidden');
+            } else {
+                btnSekolah.className = "py-2.5 px-3 rounded-lg text-sm font-semibold bg-white text-indigo-700 shadow-sm flex items-center justify-center space-x-1.5 transition";
+                btnPengawas.className = "py-2.5 px-3 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 flex items-center justify-center space-x-1.5 transition";
+                fieldSekolah.classList.remove('hidden');
+                fieldPengawas.classList.add('hidden');
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const password = document.getElementById('login-password').value.trim();
+
+            if (selectedRoleInput === 'pengawas') {
+                const username = document.getElementById('login-pengawas-user').value.trim();
+                if (!username) {
+                    showToast("Masukkan username pengawas!", "warning");
+                    return;
+                }
+                if (username !== pengawasCredentials.username || password !== pengawasCredentials.password) {
+                    showToast("Username atau Kata sandi pengawas tidak sesuai!", "warning");
+                    return;
+                }
+
+                currentUser = {
+                    role: 'pengawas',
+                    schoolId: null,
+                    name: username
+                };
+                enterAppAsPengawas();
+            } else {
+                const schoolId = parseInt(document.getElementById('login-school-select').value);
+                const school = schoolsData.find(s => s.id === schoolId);
+                if (!school) return;
+
+                // Validasi sandi sekolah sesuai pengaturan di Excel atau default
+                const validPassword = school.password || '123456';
+                if (password !== validPassword && password !== `sekolah${schoolId}`) {
+                    showToast("Kata sandi sekolah tidak sesuai! Periksa kembali kredensial pada menu Excel.", "warning");
+                    return;
+                }
+
+                currentUser = {
+                    role: 'sekolah',
+                    schoolId: school.id,
+                    name: school.name
+                };
+                enterAppAsSekolah(school);
+            }
+        }
+
+        function enterAppAsPengawas() {
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('hidden');
+            
+            // Konfigurasi UI Header untuk Pengawas
+            document.getElementById('header-role-badge').textContent = `Pengawas: ${currentUser.name}`;
+            document.getElementById('header-user-subtitle').textContent = "Monitoring Pengawas Ujian Semester (26 Sekolah • 3 Hari)";
+            document.getElementById('main-nav-tabs').classList.remove('hidden');
+            document.getElementById('view-school-portal').classList.add('hidden');
+
+            switchTab('monitoring');
+            renderSchools();
+            updateStats();
+            showToast(`Selamat datang, Pengawas (${currentUser.name})!`, "success");
+        }
+
+        function refreshSchoolPortalReadOnlyStatus(school) {
+            document.getElementById('sp-status-badge').textContent = school.status;
+            document.getElementById('sp-eval-status').textContent = school.status;
+
+            const driveEl = document.getElementById('sp-eval-drive');
+            if (school.driveLink) {
+                driveEl.innerHTML = `<a href="${school.driveLink}" target="_blank" class="text-indigo-600 hover:underline font-semibold flex items-center">Lihat Bukti Screenshot <i data-lucide="external-link" class="w-3.5 h-3.5 ml-1"></i></a>`;
+            } else {
+                driveEl.innerHTML = `<span class="text-slate-400 text-xs">Bukti belum diunggah pengawas</span>`;
+            }
+            lucide.createIcons();
+        }
+
+        function enterAppAsSekolah(school) {
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('hidden');
+
+            // Konfigurasi UI Header untuk Sekolah
+            document.getElementById('header-role-badge').textContent = "Akun Sekolah";
+            document.getElementById('header-user-subtitle').textContent = `${school.name} • Jadwal Hari ${school.day} (${school.timeSlot})`;
+            document.getElementById('main-nav-tabs').classList.add('hidden');
+
+            // Sembunyikan tab pengawas & tampilkan portal sekolah
+            document.getElementById('view-monitoring').classList.add('hidden');
+            document.getElementById('view-panduan').classList.add('hidden');
+            document.getElementById('view-integrasi').classList.add('hidden');
+            document.getElementById('view-school-portal').classList.remove('hidden');
+
+            // Isi data sekolah ke form portal sekolah
+            document.getElementById('sp-day-slot').textContent = `Jadwal Pemantauan: Hari ${school.day} • Pukul ${school.timeSlot} (20 Menit)`;
+            document.getElementById('sp-school-name').textContent = `${school.id}. ${school.name}`;
+            document.getElementById('sp-meet-link').value = school.meetLink || '';
+            document.getElementById('sp-btn-open-meet').href = school.meetLink || '#';
+            document.getElementById('sp-proctor').value = school.proctor || '';
+            document.getElementById('sp-attendance').value = school.attendance || '';
+            document.getElementById('sp-notes').value = school.notes || '';
+            
+            refreshSchoolPortalReadOnlyStatus(school);
+            showToast(`Berhasil masuk sebagai ${school.name}`, "success");
+        }
+
+        async function saveSchoolPortalData(event) {
+            event.preventDefault();
+            if (!currentUser || currentUser.role !== 'sekolah') return;
+
+            const schoolIndex = schoolsData.findIndex(s => s.id === currentUser.schoolId);
+            if (schoolIndex !== -1) {
+                const newMeet = document.getElementById('sp-meet-link').value.trim();
+                schoolsData[schoolIndex].meetLink = newMeet;
+                schoolsData[schoolIndex].proctor = document.getElementById('sp-proctor').value.trim();
+                schoolsData[schoolIndex].attendance = document.getElementById('sp-attendance').value.trim();
+                schoolsData[schoolIndex].notes = document.getElementById('sp-notes').value.trim();
+
+                document.getElementById('sp-btn-open-meet').href = newMeet;
+                await saveSchoolToCloud(schoolsData[schoolIndex]);
+                showToast("Data link Meet & kehadiran siswa berhasil dikirim ke Pengawas!", "success");
+            }
+        }
+
+        function logout() {
+            // Hentikan timer jika sedang berjalan
+            if (isTimerRunning) {
+                clearInterval(timerInterval);
+                isTimerRunning = false;
+            }
+            currentUser = null;
+            document.getElementById('main-app').classList.add('hidden');
+            document.getElementById('login-screen').classList.remove('hidden');
+            lucide.createIcons();
+            showToast("Anda telah keluar dari sesi.", "info");
+        }
+
+        // ==========================================
+        // NAVIGASI TAB
+        // ==========================================
+        function switchTab(tabName) {
+            // Sembunyikan semua view
+            document.getElementById('view-monitoring').classList.add('hidden');
+            document.getElementById('view-panduan').classList.add('hidden');
+            document.getElementById('view-integrasi').classList.add('hidden');
+            document.getElementById('view-backup').classList.add('hidden');
+
+            // Reset style tombol navigasi
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-800', 'text-white');
+                btn.classList.add('text-indigo-200');
+            });
+
+            // Tampilkan view aktif
+            document.getElementById(`view-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${tabName}`);
+            activeBtn.classList.add('bg-indigo-800', 'text-white');
+            activeBtn.classList.remove('text-indigo-200');
+
+            if (tabName === 'integrasi') {
+                renderRekapTable();
+            }
+            lucide.createIcons();
+        }
+
+        // ==========================================
+        // FILTER HARI & RENDER KARTU SEKOLAH
+        // ==========================================
+        function filterDay(day) {
+            currentDayFilter = day;
+
+            // Update style tombol filter hari
+            document.querySelectorAll('.day-filter-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'text-indigo-700', 'shadow-sm', 'font-semibold');
+                btn.classList.add('text-slate-600', 'font-medium');
+            });
+            const activeBtn = document.getElementById(`day-btn-${day}`);
+            activeBtn.classList.add('bg-white', 'text-indigo-700', 'shadow-sm', 'font-semibold');
+            activeBtn.classList.remove('text-slate-600', 'font-medium');
+
+            // Update estimasi waktu berdasarkan hari
+            const durationEl = document.getElementById('stat-duration');
+            if (day === 1 || day === 2) {
+                durationEl.textContent = "180 Menit (9 Sekolah × 20 Mnt)";
+            } else if (day === 3) {
+                durationEl.textContent = "160 Menit (8 Sekolah × 20 Mnt)";
+            } else {
+                durationEl.textContent = "520 Menit (26 Sekolah Total)";
+            }
+
+            renderSchools();
+        }
+
+        function renderSchools() {
+            const grid = document.getElementById('school-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            const filtered = currentDayFilter === 0 
+                ? schoolsData 
+                : schoolsData.filter(s => s.day === currentDayFilter);
+
+            filtered.forEach(school => {
+                const isMonitoring = activeSchoolId === school.id;
+                
+                let badgeClass = 'bg-slate-100 text-slate-600';
+                if (school.status === 'Selesai - Lancar') badgeClass = 'bg-emerald-100 text-emerald-700';
+                if (school.status === 'Selesai - Ada Kendala') badgeClass = 'bg-amber-100 text-amber-700';
+
+                const card = document.createElement('div');
+                card.className = `bg-white rounded-2xl border transition-all duration-200 flex flex-col justify-between p-5 ${
+                    isMonitoring 
+                        ? 'border-indigo-500 ring-2 ring-indigo-500/20 shadow-md' 
+                        : 'border-slate-200 hover:border-indigo-300 shadow-sm'
+                }`;
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-indigo-50 text-indigo-700">
+                                Hari ${school.day} • ${school.timeSlot}
+                            </span>
+                            <span class="px-2.5 py-1 rounded-full text-xs font-medium ${badgeClass}">
+                                ${school.status}
+                            </span>
+                        </div>
+
+                        <h3 class="font-bold text-base text-slate-900 mb-1">${school.id}. ${school.name}</h3>
+                        
+                        <div class="text-xs text-slate-500 space-y-1 mt-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            <div class="flex items-center justify-between">
+                                <span>Pengawas:</span>
+                                <span class="font-medium text-slate-700">${school.proctor || '-'}</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span>Kehadiran:</span>
+                                <span class="font-medium text-slate-700">${school.attendance || '-'}</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span>Bukti Drive:</span>
+                                ${school.driveLink 
+                                    ? `<a href="${school.driveLink}" target="_blank" class="text-indigo-600 hover:underline font-medium flex items-center">Tersimpan <i data-lucide="external-link" class="w-3 h-3 ml-1"></i></a>` 
+                                    : `<span class="text-slate-400">Belum diunggah</span>`
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2">
+                        <button onclick="startMonitoringSchool(${school.id})" class="flex-1 py-2 px-3 rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 transition ${
+                            isMonitoring 
+                                ? 'bg-red-600 hover:bg-red-700 text-white' 
+                                : 'bg-indigo-600 hover:bg-indigo-700 text-white'
+                        }">
+                            <i data-lucide="video" class="w-3.5 h-3.5"></i>
+                            <span>${isMonitoring ? 'Sedang Dipantau' : 'Mulai Pantau (20m)'}</span>
+                        </button>
+
+                        <a href="${school.meetLink}" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 rounded-xl transition" title="Buka Google Meet">
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+
+                        <button onclick="openReportModal(${school.id})" class="p-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl transition" title="Isi Laporan & Catatan">
+                            <i data-lucide="file-edit" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            lucide.createIcons();
+        }
+
+        // ==========================================
+        // LOGIKA TIMER 20 MENIT PER SEKOLAH
+        // ==========================================
+        function startMonitoringSchool(schoolId) {
+            const school = schoolsData.find(s => s.id === schoolId);
+            if (!school) return;
+
+            // Hentikan timer sebelumnya jika ada
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+
+            // Set sekolah aktif & reset ke 20 menit
+            activeSchoolId = schoolId;
+            timerSeconds = 20 * 60;
+            updateTimerDisplay();
+
+            // Update UI Header Timer
+            document.getElementById('active-school-name').textContent = `${school.id}. ${school.name}`;
+            document.getElementById('active-school-meta').textContent = `Jadwal Hari ${school.day} (${school.timeSlot}) • Klik "Buka Meet" untuk masuk ke ruang pengawasan.`;
+            
+            const meetBtn = document.getElementById('btn-active-meet');
+            meetBtn.href = school.meetLink;
+            meetBtn.classList.remove('hidden');
+
+            document.getElementById('btn-timer-toggle').disabled = false;
+            document.getElementById('btn-timer-reset').disabled = false;
+
+            // Mulai timer otomatis
+            toggleTimer();
+            renderSchools();
+
+            // Scroll halus ke atas agar timer terlihat di mobile
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            showToast(`Memulai pemantauan 20 menit untuk ${school.name}`, 'info');
+        }
+
+        function toggleTimer() {
+            if (!activeSchoolId) return;
+
+            const toggleBtn = document.getElementById('btn-timer-toggle');
+            const toggleText = document.getElementById('btn-timer-text');
+            const liveIndicator = document.getElementById('live-indicator');
+            const statusBadge = document.getElementById('timer-status-badge');
+
+            if (isTimerRunning) {
+                // Jeda Timer
+                clearInterval(timerInterval);
+                isTimerRunning = false;
+                toggleText.textContent = "Lanjut";
+                toggleBtn.classList.replace('bg-amber-600', 'bg-indigo-600');
+                toggleBtn.classList.replace('hover:bg-amber-700', 'hover:bg-indigo-700');
+                liveIndicator.classList.add('hidden');
+                statusBadge.className = "w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center flex-shrink-0 text-amber-600";
+            } else {
+                // Jalankan Timer
+                isTimerRunning = true;
+                toggleText.textContent = "Jeda";
+                toggleBtn.classList.replace('bg-indigo-600', 'bg-amber-600');
+                toggleBtn.classList.replace('hover:bg-indigo-700', 'hover:bg-amber-700');
+                liveIndicator.classList.remove('hidden');
+                statusBadge.className = "w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0 text-red-600";
+
+                timerInterval = setInterval(() => {
+                    if (timerSeconds > 0) {
+                        timerSeconds--;
+                        updateTimerDisplay();
+
+                        // Peringatan 2 menit terakhir (Menit ke-18)
+                        if (timerSeconds === 120) {
+                            playNotificationBeep();
+                            showToast("Waktu tersisa 2 menit! Segera isi laporan & siapkan screenshot.", "warning");
+                        }
+                    } else {
+                        // Waktu 20 menit habis
+                        clearInterval(timerInterval);
+                        isTimerRunning = false;
+                        playNotificationBeep();
+                        showToast("Waktu 20 menit selesai! Silakan simpan laporan & pindah ke sekolah berikutnya.", "success");
+                        openReportModal(activeSchoolId);
+                    }
+                }, 1000);
+            }
+        }
+
+        function resetTimer() {
+            if (!activeSchoolId) return;
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            timerSeconds = 20 * 60;
+            updateTimerDisplay();
+            document.getElementById('btn-timer-text').textContent = "Mulai";
+            document.getElementById('live-indicator').classList.add('hidden');
+            showToast("Timer di-reset ke 20:00", "info");
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timerSeconds / 60);
+            const secs = timerSeconds % 60;
+            const display = document.getElementById('timer-display');
+            display.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+            if (timerSeconds <= 120) {
+                display.classList.replace('text-indigo-700', 'text-red-600');
+            } else {
+                display.classList.replace('text-red-600', 'text-indigo-700');
+            }
+        }
+
+        // Suara bip lembut menggunakan Web Audio API (tanpa file eksternal)
+        function playNotificationBeep() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(880, ctx.currentTime);
+                gain.gain.setValueAtTime(0.1, ctx.currentTime);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.3);
+            } catch (e) {
+                // Abaikan jika browser memblokir autoplay audio
+            }
+        }
+
+        // ==========================================
+        // MODAL LAPORAN & PENYIMPANAN DATA
+        // ==========================================
+        function openReportModal(schoolId) {
+            const school = schoolsData.find(s => s.id === schoolId);
+            if (!school) return;
+
+            document.getElementById('modal-school-id').value = school.id;
+            document.getElementById('modal-day-badge').textContent = `Hari ${school.day} • ${school.timeSlot} (20 Menit)`;
+            document.getElementById('modal-school-title').textContent = `${school.id}. ${school.name}`;
+            
+            document.getElementById('input-meet-link').value = school.meetLink || '';
+            document.getElementById('input-proctor').value = school.proctor || '';
+            document.getElementById('input-attendance').value = school.attendance || '';
+            document.getElementById('input-status').value = school.status === 'Belum Dipantau' ? 'Selesai - Lancar' : school.status;
+            document.getElementById('input-notes').value = school.notes || '';
+            document.getElementById('input-drive-link').value = school.driveLink || '';
+
+            document.getElementById('report-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('report-modal').classList.add('hidden');
+        }
+
+        async function saveSchoolReport(event) {
+            event.preventDefault();
+            const id = parseInt(document.getElementById('modal-school-id').value);
+            const schoolIndex = schoolsData.findIndex(s => s.id === id);
+
+            if (schoolIndex !== -1) {
+                schoolsData[schoolIndex].meetLink = document.getElementById('input-meet-link').value.trim();
+                schoolsData[schoolIndex].proctor = document.getElementById('input-proctor').value.trim();
+                schoolsData[schoolIndex].attendance = document.getElementById('input-attendance').value.trim();
+                schoolsData[schoolIndex].status = document.getElementById('input-status').value;
+                schoolsData[schoolIndex].notes = document.getElementById('input-notes').value.trim();
+                schoolsData[schoolIndex].driveLink = document.getElementById('input-drive-link').value.trim();
+
+                closeModal();
+                renderSchools();
+                updateStats();
+                renderRekapTable();
+                await saveSchoolToCloud(schoolsData[schoolIndex]);
+                showToast(`Laporan ${schoolsData[schoolIndex].name} berhasil disimpan ke Cloud!`, 'success');
+            }
+        }
+
+        function updateStats() {
+            const completedCount = schoolsData.filter(s => s.status.startsWith('Selesai')).length;
+            const statEl = document.getElementById('stat-completed');
+            if (statEl) statEl.textContent = `${completedCount} / 26`;
+        }
+
+        // ==========================================
+        // INTEGRASI DRIVE & SPREADSHEET (EKSPOR)
+        // ==========================================
+        function renderRekapTable() {
+            const tbody = document.getElementById('rekap-table-body');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            schoolsData.forEach(s => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition";
+                
+                let statusColor = "text-slate-500";
+                if (s.status === "Selesai - Lancar") statusColor = "text-emerald-600 font-semibold";
+                if (s.status === "Selesai - Ada Kendala") statusColor = "text-amber-600 font-semibold";
+
+                tr.innerHTML = `
+                    <td class="py-3 px-4 text-slate-600">${s.id}</td>
+                    <td class="py-3 px-4 font-medium text-indigo-700">Hari ${s.day}</td>
+                    <td class="py-3 px-4 font-semibold text-slate-900">${s.name}</td>
+                    <td class="py-3 px-4 text-slate-600 whitespace-nowrap">${s.timeSlot}</td>
+                    <td class="py-3 px-4 ${statusColor} whitespace-nowrap">${s.status}</td>
+                    <td class="py-3 px-4 text-slate-700">${s.proctor || '-'}</td>
+                    <td class="py-3 px-4 text-slate-700">${s.attendance || '-'}</td>
+                    <td class="py-3 px-4 text-slate-600 max-w-xs truncate" title="${s.notes}">${s.notes || '-'}</td>
+                    <td class="py-3 px-4">
+                        ${s.driveLink 
+                            ? `<a href="${s.driveLink}" target="_blank" class="text-indigo-600 hover:underline font-medium">Buka Link</a>` 
+                            : `<span class="text-slate-400">-</span>`
+                        }
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Unduh CSV yang siap dibuka langsung di Google Spreadsheet / Excel
+        function exportToCSV() {
+            const headers = ["No", "Hari", "Jadwal (20 Menit)", "Nama Sekolah", "Link Google Meet", "Status Pemantauan", "Pengawas Ruang", "Kehadiran Siswa", "Catatan Pengawasan", "Link Bukti Drive"];
+            
+            const rows = schoolsData.map(s => [
+                s.id,
+                `Hari ${s.day}`,
+                s.timeSlot,
+                `"${s.name.replace(/"/g, '""')}"`,
+                s.meetLink,
+                `"${s.status}"`,
+                `"${(s.proctor || '').replace(/"/g, '""')}"`,
+                `"${(s.attendance || '').replace(/"/g, '""')}"`,
+                `"${(s.notes || '').replace(/"/g, '""')}"`,
+                s.driveLink || ''
+            ]);
+
+            const csvContent = "data:text/csv;charset=utf-8," 
+                + [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "Rekap_Monitoring_Ujian_26_Sekolah.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showToast("File CSV berhasil diunduh! Siap diimpor ke Google Spreadsheet.", "success");
+        }
+
+        // Salin format Tab-Separated (TSV) agar bisa langsung Ctrl+V ke Google Spreadsheet
+        function copyTableForSheets() {
+            const headers = ["No", "Hari", "Jadwal", "Nama Sekolah", "Link Meet", "Status", "Pengawas Ruang", "Kehadiran", "Catatan", "Bukti Drive"];
+            const rows = schoolsData.map(s => [
+                s.id,
+                `Hari ${s.day}`,
+                s.timeSlot,
+                s.name,
+                s.meetLink,
+                s.status,
+                s.proctor || "-",
+                s.attendance || "-",
+                (s.notes || "-").replace(/\n/g, " "),
+                s.driveLink || "-"
+            ]);
+
+            const tsvText = [headers.join("\t"), ...rows.map(r => r.join("\t"))].join("\n");
+
+            const textarea = document.createElement("textarea");
+            textarea.value = tsvText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast("Data berhasil disalin! Buka Google Spreadsheet lalu tekan Ctrl+V (Tempel).", "success");
+            } catch (err) {
+                showToast("Gagal menyalin data secara otomatis.", "warning");
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function openMasterLink(inputId) {
+            const url = document.getElementById(inputId).value.trim();
+            if (url) {
+                window.open(url, '_blank');
+            } else {
+                showToast("Silakan masukkan tautan URL Google Drive/Spreadsheet terlebih dahulu.", "warning");
+            }
+        }
+
+        // ==========================================
+        // MENU BACKUP & IMPOR EXCEL OTOMATIS
+        // ==========================================
+        function downloadExcelTemplate() {
+            if (typeof XLSX === 'undefined') {
+                showToast("Pustaka Excel sedang dimuat, silakan coba beberapa detik lagi.", "warning");
+                return;
+            }
+
+            // Sheet 1: Daftar 26 Sekolah beserta Username & Password
+            const rows = schoolsData.map(s => ({
+                "No": s.id,
+                "Hari": s.day,
+                "Jadwal": s.timeSlot,
+                "Nama Sekolah": s.name,
+                "Username": s.username || `sekolah${s.id}`,
+                "Password": s.password || "123456",
+                "Link Google Meet": s.meetLink,
+                "Pengawas Ruang": s.proctor || "",
+                "Kehadiran": s.attendance || "",
+                "Status": s.status || "Belum Dipantau",
+                "Catatan": s.notes || "",
+                "Link Bukti Drive": s.driveLink || ""
+            }));
+
+            const worksheet = XLSX.utils.json_to_sheet(rows);
+            worksheet['!cols'] = [
+                { wch: 5 }, { wch: 6 }, { wch: 15 }, { wch: 32 },
+                { wch: 16 }, { wch: 16 }, { wch: 35 }, { wch: 22 },
+                { wch: 18 }, { wch: 20 }, { wch: 30 }, { wch: 30 }
+            ];
+
+            // Sheet 2: Akun Login Pengawas
+            const pengawasSheet = XLSX.utils.json_to_sheet([
+                {
+                    "Peran": "Pengawas",
+                    "Username": pengawasCredentials.username,
+                    "Password": pengawasCredentials.password
+                }
+            ]);
+            pengawasSheet['!cols'] = [{ wch: 15 }, { wch: 22 }, { wch: 22 }];
+
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Daftar_26_Sekolah");
+            XLSX.utils.book_append_sheet(workbook, pengawasSheet, "Akun_Pengawas");
+            XLSX.writeFile(workbook, "Template_Daftar_Sekolah_SIMON_UJIAN.xlsx");
+            showToast("Template Excel berhasil diunduh! Kolom Username & Password tersedia di dalam file.", "success");
+        }
+
+        function exportToExcelXLSX() {
+            if (typeof XLSX === 'undefined') {
+                exportToCSV();
+                return;
+            }
+            const rows = schoolsData.map(s => ({
+                "No": s.id,
+                "Hari": `Hari ${s.day}`,
+                "Jadwal": s.timeSlot,
+                "Nama Sekolah": s.name,
+                "Username": s.username || `sekolah${s.id}`,
+                "Password": s.password || "123456",
+                "Link Google Meet": s.meetLink,
+                "Status Pemantauan": s.status,
+                "Pengawas Ruang": s.proctor || "-",
+                "Kehadiran Siswa": s.attendance || "-",
+                "Catatan Pengawasan": s.notes || "-",
+                "Link Bukti Drive": s.driveLink || "-"
+            }));
+
+            const worksheet = XLSX.utils.json_to_sheet(rows);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Backup_Laporan_Ujian");
+            const dateStr = new Date().toISOString().slice(0, 10);
+            XLSX.writeFile(workbook, `Backup_Monitoring_Ujian_${dateStr}.xlsx`);
+            showToast("File Backup Excel (.xlsx) berhasil diunduh!", "success");
+        }
+
+        async function handleExcelImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (typeof XLSX === 'undefined') {
+                showToast("Pustaka pembaca Excel belum siap. Periksa koneksi internet Anda.", "warning");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[firstSheetName];
+                    const jsonRows = XLSX.utils.sheet_to_json(worksheet, { defval: "" });
+
+                    // Cek jika ada sheet kedua (Akun_Pengawas) untuk memperbarui username & password Pengawas
+                    if (workbook.SheetNames.length > 1) {
+                        const secondSheet = workbook.Sheets[workbook.SheetNames[1]];
+                        const pengawasRows = XLSX.utils.sheet_to_json(secondSheet, { defval: "" });
+                        if (pengawasRows && pengawasRows.length > 0) {
+                            const pRow = pengawasRows[0];
+                            const pUser = String(pRow["Username"] || pRow["USERNAME"] || pRow["username"] || "").trim();
+                            const pPass = String(pRow["Password"] || pRow["PASSWORD"] || pRow["password"] || "").trim();
+                            if (pUser) pengawasCredentials.username = pUser;
+                            if (pPass) pengawasCredentials.password = pPass;
+                            await saveMasterLinksToCloud();
+                        }
+                    }
+
+                    if (!jsonRows || jsonRows.length === 0) {
+                        showToast("File Excel kosong atau format kolom tidak terbaca.", "warning");
+                        return;
+                    }
+
+                    let updatedCount = 0;
+                    const savePromises = [];
+
+                    jsonRows.forEach((row, index) => {
+                        // Deteksi kolom secara fleksibel (mendukung berbagai penamaan header)
+                        const rowNo = Number(row["No"] || row["NO"] || row["no"] || row["ID"] || (index + 1));
+                        const newName = String(row["Nama Sekolah"] || row["NAMA SEKOLAH"] || row["Sekolah"] || row["nama_sekolah"] || "").trim();
+                        const newUsername = String(row["Username"] || row["USERNAME"] || row["username"] || "").trim();
+                        const newPassword = String(row["Password"] || row["PASSWORD"] || row["password"] || row["Sandi"] || "").trim();
+                        const newDay = Number(String(row["Hari"] || row["HARI"] || "").replace(/[^0-9]/g, ""));
+                        const newTime = String(row["Jadwal"] || row["JADWAL"] || row["Jam"] || "").trim();
+                        const newMeet = String(row["Link Google Meet"] || row["Link Meet"] || row["Meet"] || "").trim();
+                        const newProctor = String(row["Pengawas Ruang"] || row["Proktor"] || "").trim();
+                        const newAttendance = String(row["Kehadiran"] || row["Kehadiran Siswa"] || "").trim();
+                        const newNotes = String(row["Catatan"] || row["Catatan Pengawasan"] || "").trim();
+                        const newDrive = String(row["Link Bukti Drive"] || row["Bukti Drive"] || "").trim();
+
+                        const targetIdx = schoolsData.findIndex(s => s.id === rowNo);
+                        if (targetIdx !== -1 && newName) {
+                            schoolsData[targetIdx].name = newName;
+                            if (newUsername) schoolsData[targetIdx].username = newUsername;
+                            if (newPassword) schoolsData[targetIdx].password = newPassword;
+                            if (newDay >= 1 && newDay <= 3) schoolsData[targetIdx].day = newDay;
+                            if (newTime) schoolsData[targetIdx].timeSlot = newTime;
+                            if (newMeet) schoolsData[targetIdx].meetLink = newMeet;
+                            if (newProctor) schoolsData[targetIdx].proctor = newProctor;
+                            if (newAttendance) schoolsData[targetIdx].attendance = newAttendance;
+                            if (newNotes) schoolsData[targetIdx].notes = newNotes;
+                            if (newDrive) schoolsData[targetIdx].driveLink = newDrive;
+
+                            updatedCount++;
+                            savePromises.push(saveSchoolToCloud(schoolsData[targetIdx]));
+                        }
+                    });
+
+                    if (updatedCount > 0) {
+                        populateSchoolLoginDropdown();
+                        renderSchools();
+                        updateStats();
+                        renderRekapTable();
+                        await Promise.all(savePromises);
+                        showToast(`Berhasil memperbarui ${updatedCount} data sekolah (termasuk Username & Password) dari Excel!`, "success");
+                    } else {
+                        showToast("Tidak ada baris yang cocok. Pastikan kolom 'No' (1-26) dan 'Nama Sekolah' terisi.", "warning");
+                    }
+                } catch (err) {
+                    console.error("Error parsing Excel:", err);
+                    showToast("Gagal membaca file Excel. Pastikan format file valid (.xlsx / .csv).", "warning");
+                } finally {
+                    event.target.value = "";
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function downloadFullBackupJSON() {
+            const backupPayload = {
+                app: "SIMON-UJIAN",
+                exportedAt: new Date().toISOString(),
+                masterDriveUrl: document.getElementById('master-drive-url')?.value || "",
+                masterSheetUrl: document.getElementById('master-sheet-url')?.value || "",
+                schoolsData: schoolsData
+            };
+
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupPayload, null, 2));
+            const link = document.createElement("a");
+            const dateStr = new Date().toISOString().slice(0, 10);
+            link.setAttribute("href", dataStr);
+            link.setAttribute("download", `Backup_Full_SIMON_UJIAN_${dateStr}.json`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast("File Backup Lengkap (.JSON) berhasil diunduh!", "success");
+        }
+
+        function handleJSONRestore(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                try {
+                    const parsed = JSON.parse(e.target.result);
+                    if (!parsed || !Array.isArray(parsed.schoolsData)) {
+                        showToast("Format file backup JSON tidak valid!", "warning");
+                        return;
+                    }
+
+                    schoolsData = parsed.schoolsData;
+                    if (parsed.masterDriveUrl && document.getElementById('master-drive-url')) {
+                        document.getElementById('master-drive-url').value = parsed.masterDriveUrl;
+                    }
+                    if (parsed.masterSheetUrl && document.getElementById('master-sheet-url')) {
+                        document.getElementById('master-sheet-url').value = parsed.masterSheetUrl;
+                    }
+
+                    populateSchoolLoginDropdown();
+                    renderSchools();
+                    updateStats();
+                    renderRekapTable();
+
+                    // Sinkronkan ke cloud
+                    await Promise.all(schoolsData.map(s => saveSchoolToCloud(s)));
+                    await saveMasterLinksToCloud();
+                    showToast("Seluruh data berhasil dipulihkan (Restore) dari file Backup!", "success");
+                } catch (err) {
+                    console.error("Error restore JSON:", err);
+                    showToast("Gagal memulihkan file backup. File rusak atau tidak sesuai.", "warning");
+                } finally {
+                    event.target.value = "";
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function openResetConfirmModal() {
+            document.getElementById('reset-confirm-modal').classList.remove('hidden');
+        }
+
+        function closeResetConfirmModal() {
+            document.getElementById('reset-confirm-modal').classList.add('hidden');
+        }
+
+        async function executeResetData() {
+            closeResetConfirmModal();
+            schoolsData = JSON.parse(JSON.stringify(defaultSchoolsData));
+            populateSchoolLoginDropdown();
+            renderSchools();
+            updateStats();
+            renderRekapTable();
+            await Promise.all(schoolsData.map(s => saveSchoolToCloud(s)));
+            showToast("Data berhasil dikembalikan ke pengaturan awal.", "info");
+        }
+
+        // ==========================================
+        // NOTIFIKASI TOAST CUSTOM (NON-ALERT)
+        // ==========================================
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            if (!container) return;
+            const toast = document.createElement('div');
+            
+            let bgClass = 'bg-slate-800 text-white';
+            if (type === 'success') bgClass = 'bg-emerald-600 text-white';
+            if (type === 'warning') bgClass = 'bg-amber-600 text-white';
+
+            toast.className = `${bgClass} px-4 py-3 rounded-xl shadow-lg text-sm font-medium flex items-center space-x-2 pointer-events-auto transition-all duration-300 max-w-sm`;
+            toast.innerHTML = `<span>${message}</span>`;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(10px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // Ekspos fungsi ke global window agar atribut onclick/onsubmit HTML dapat memanggilnya di dalam type="module"
+        window.selectLoginRole = selectLoginRole;
+        window.handleLogin = handleLogin;
+        window.saveSchoolPortalData = saveSchoolPortalData;
+        window.logout = logout;
+        window.switchTab = switchTab;
+        window.filterDay = filterDay;
+        window.startMonitoringSchool = startMonitoringSchool;
+        window.toggleTimer = toggleTimer;
+        window.resetTimer = resetTimer;
+        window.openReportModal = openReportModal;
+        window.closeModal = closeModal;
+        window.saveSchoolReport = saveSchoolReport;
+        window.exportToCSV = exportToCSV;
+        window.copyTableForSheets = copyTableForSheets;
+        window.openMasterLink = openMasterLink;
+        window.downloadExcelTemplate = downloadExcelTemplate;
+        window.exportToExcelXLSX = exportToExcelXLSX;
+        window.handleExcelImport = handleExcelImport;
+        window.downloadFullBackupJSON = downloadFullBackupJSON;
+        window.handleJSONRestore = handleJSONRestore;
+        window.openResetConfirmModal = openResetConfirmModal;
+        window.closeResetConfirmModal = closeResetConfirmModal;
+        window.executeResetData = executeResetData;
+    </script>
 </body>
 </html>
