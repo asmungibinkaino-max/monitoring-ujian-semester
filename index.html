@@ -145,7 +145,7 @@
                             <div class="flex items-center space-x-2">
                                 <h1 class="text-lg font-bold text-slate-900 leading-tight">SIMON-UJIAN</h1>
                                 <span id="user-role-badge" class="px-2 py-0.5 text-[11px] font-bold rounded-md bg-indigo-100 text-indigo-700 uppercase">Pengawas</span>
-                                <span id="cloud-sync-badge" class="hidden sm:inline-flex items-center space-x-1 px-2 py-0.5 text-[11px] font-medium rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200" title="Status Sinkronisasi Database Online">
+                                <span id="cloud-sync-badge" class="hidden sm:inline-flex items-center space-x-1 px-2 py-0.5 text-[11px] font-medium rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200" title="Status Sinkronisasi Database">
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                                     <span>Cloud Aktif</span>
                                 </span>
@@ -508,13 +508,13 @@
                             <div class="bg-white p-3.5 rounded-xl border border-slate-200 space-y-2.5">
                                 <div class="flex items-center justify-between">
                                     <label class="text-xs font-bold text-slate-700 uppercase">ID Folder Google Drive</label>
-                                    <span class="text-[11px] text-amber-600 font-medium">Tersimpan di Cloud</span>
+                                    <span class="text-[11px] text-amber-600 font-medium">Permanen & Sync</span>
                                 </div>
-                                <input type="text" id="master-drive-id" oninput="syncIdToUrl('drive')" placeholder="Contoh: 1A2b3C4d5E6f7G8h9I0j..." class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm font-mono focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                <input type="text" id="master-drive-id" value="1NCfoPKzPjTHanRHAJgc3YT_p5Pj-y5zK" oninput="syncIdToUrl('drive')" placeholder="Contoh: 1A2b3C4d5E6f7G8h9I0j..." class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm font-mono focus:ring-2 focus:ring-indigo-500 focus:outline-none">
 
                                 <label class="block text-[11px] font-semibold text-slate-500 uppercase pt-1">Tautan Lengkap Google Drive</label>
                                 <div class="flex space-x-2">
-                                    <input type="url" id="master-drive-url" oninput="syncUrlToId('drive')" placeholder="https://drive.google.com/drive/folders/..." class="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                    <input type="url" id="master-drive-url" value="https://drive.google.com/drive/folders/1NCfoPKzPjTHanRHAJgc3YT_p5Pj-y5zK" oninput="syncUrlToId('drive')" placeholder="https://drive.google.com/drive/folders/..." class="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
                                     <button type="button" onclick="openMasterLink('master-drive-url', 'drive')" class="px-3 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg text-sm font-medium flex items-center flex-shrink-0 transition" title="Buka Google Drive">
                                         <i data-lucide="external-link" class="w-4 h-4"></i>
                                     </button>
@@ -525,13 +525,13 @@
                             <div class="bg-white p-3.5 rounded-xl border border-slate-200 space-y-2.5">
                                 <div class="flex items-center justify-between">
                                     <label class="text-xs font-bold text-slate-700 uppercase">ID Google Spreadsheet</label>
-                                    <span class="text-[11px] text-emerald-600 font-medium">Tersimpan di Cloud</span>
+                                    <span class="text-[11px] text-emerald-600 font-medium">Permanen & Sync</span>
                                 </div>
-                                <input type="text" id="master-sheet-id" oninput="syncIdToUrl('sheet')" placeholder="Contoh: 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm font-mono focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                <input type="text" id="master-sheet-id" value="1tk2sbt2X9RDWedFXW06peDtImmiyf0nHdL-3EDujQGI" oninput="syncIdToUrl('sheet')" placeholder="Contoh: 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm font-mono focus:ring-2 focus:ring-indigo-500 focus:outline-none">
 
                                 <label class="block text-[11px] font-semibold text-slate-500 uppercase pt-1">Tautan Lengkap Google Spreadsheet</label>
                                 <div class="flex space-x-2">
-                                    <input type="url" id="master-sheet-url" oninput="syncUrlToId('sheet')" placeholder="https://docs.google.com/spreadsheets/d/..." class="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                    <input type="url" id="master-sheet-url" value="https://docs.google.com/spreadsheets/d/1tk2sbt2X9RDWedFXW06peDtImmiyf0nHdL-3EDujQGI/edit?gid=0#gid=0" oninput="syncUrlToId('sheet')" placeholder="https://docs.google.com/spreadsheets/d/..." class="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
                                     <button type="button" onclick="openMasterLink('master-sheet-url', 'sheet')" class="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-medium flex items-center flex-shrink-0 transition" title="Buka Google Spreadsheet">
                                         <i data-lucide="external-link" class="w-4 h-4"></i>
                                     </button>
@@ -539,12 +539,18 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1">
-                            <p class="text-xs text-slate-500">Masukkan <b>ID</b> atau tempelkan <b>Link lengkap</b> di atas. Data otomatis disinkronkan agar tetap tersimpan saat login dari perangkat lain.</p>
-                            <button type="button" onclick="saveMasterLinksToCloud(true)" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 transition shadow-sm flex-shrink-0">
-                                <i data-lucide="cloud-upload" class="w-4 h-4"></i>
-                                <span>Simpan ID & Link ke Cloud</span>
-                            </button>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+                            <p class="text-xs text-slate-500">ID & Link disimpan otomatis. Jika file HTML ini dibuka secara offline di perangkat lain, gunakan tombol <b>Unduh HTML Portable</b> agar seluruh data ikut tertanam di dalam file.</p>
+                            <div class="flex flex-wrap items-center gap-2 flex-shrink-0">
+                                <button type="button" onclick="saveMasterLinksToCloud(true)" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold flex items-center space-x-1.5 transition shadow-sm">
+                                    <i data-lucide="cloud-upload" class="w-4 h-4"></i>
+                                    <span>Simpan Pengaturan</span>
+                                </button>
+                                <button type="button" onclick="downloadPortableHTML()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-semibold flex items-center space-x-1.5 transition shadow-sm" title="Unduh file HTML dengan ID Drive, ID Sheet, dan seluruh data terbaru tertanam di dalamnya">
+                                    <i data-lucide="file-code" class="w-4 h-4"></i>
+                                    <span>Unduh HTML Portable</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -727,21 +733,23 @@
     <!-- MODAL KONFIRMASI RESET DATA                -->
     <!-- ========================================== -->
     <div id="reset-confirm-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4">
-            <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center mx-auto">
+        <div class="bg-white rounded-2xl max-w-sm w-full shadow-2xl border border-slate-100 p-6 text-center space-y-4">
+            <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto">
                 <i data-lucide="alert-triangle" class="w-6 h-6"></i>
             </div>
-            <h3 class="text-lg font-bold text-slate-900">Reset Semua Data?</h3>
-            <p class="text-sm text-slate-600">Seluruh perubahan nama sekolah, catatan pemantauan, dan status akan dikembalikan ke daftar default awal. Pastikan Anda sudah mengunduh file Backup terlebih dahulu.</p>
-            <div class="flex justify-center space-x-3 pt-2">
+            <div>
+                <h3 class="text-lg font-bold text-slate-900">Reset Semua Data?</h3>
+                <p class="text-xs text-slate-600 mt-1">Tindakan ini akan mengembalikan nama 26 sekolah, status pemantauan, dan catatan ke pengaturan awal.</p>
+            </div>
+            <div class="flex justify-center gap-2 pt-2">
                 <button type="button" onclick="closeResetModal()" class="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition">Batal</button>
-                <button type="button" onclick="executeResetAllData()" class="px-5 py-2 text-sm font-semibold bg-rose-600 hover:bg-rose-700 text-white rounded-xl shadow-sm transition">Ya, Reset Sekarang</button>
+                <button type="button" onclick="executeResetAllData()" class="px-4 py-2 text-sm font-semibold bg-rose-600 hover:bg-rose-700 text-white rounded-xl transition">Ya, Reset Data</button>
             </div>
         </div>
     </div>
 
     <!-- ========================================== -->
-    <!-- SCRIPT LOGIKA APLIKASI & CLOUD SYNC        -->
+    <!-- JAVASCRIPT LOGIC & FIREBASE REALTIME SYNC  -->
     <!-- ========================================== -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
@@ -749,47 +757,52 @@
         import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // ==========================================
-        // DATA AWAL 26 SEKOLAH (DIBAGI 3 HARI: 9, 9, 8)
+        // DATA AWAL 26 SEKOLAH & NPSN RESMI (9 + 9 + 8 = 26)
         // ==========================================
-        const DEFAULT_MEET_LINK = "https://meet.google.com/sno-sjpt-ckb";
+        const MEET_LINK_RESMI = "https://meet.google.com/sno-sjpt-ckb";
+        const DEFAULT_DRIVE_ID = "1NCfoPKzPjTHanRHAJgc3YT_p5Pj-y5zK";
+        const DEFAULT_DRIVE_URL = "https://drive.google.com/drive/folders/1NCfoPKzPjTHanRHAJgc3YT_p5Pj-y5zK";
+        const DEFAULT_SHEET_ID = "1tk2sbt2X9RDWedFXW06peDtImmiyf0nHdL-3EDujQGI";
+        const DEFAULT_SHEET_URL = "https://docs.google.com/spreadsheets/d/1tk2sbt2X9RDWedFXW06peDtImmiyf0nHdL-3EDujQGI/edit?gid=0#gid=0";
 
         const initialSchools = [
-            // HARI 1: 9 SEKOLAH
-            { id: 1, day: 1, time: "07:30 - 07:50", name: "SMA Negeri 1 Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah1", password: "sekolah1" },
-            { id: 2, day: 1, time: "07:50 - 08:10", name: "SMA Negeri 2 Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah2", password: "sekolah2" },
-            { id: 3, day: 1, time: "08:10 - 08:30", name: "SMA Negeri 3 Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah3", password: "sekolah3" },
-            { id: 4, day: 1, time: "08:30 - 08:50", name: "SMA Negeri 4 Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah4", password: "sekolah4" },
-            { id: 5, day: 1, time: "08:50 - 09:10", name: "SMA Negeri 5 Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah5", password: "sekolah5" },
-            { id: 6, day: 1, time: "09:30 - 09:50", name: "SMK Negeri 1 Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah6", password: "sekolah6" },
-            { id: 7, day: 1, time: "09:50 - 10:10", name: "SMK Negeri 2 Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah7", password: "sekolah7" },
-            { id: 8, day: 1, time: "10:10 - 10:30", name: "SMK Negeri 3 Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah8", password: "sekolah8" },
-            { id: 9, day: 1, time: "10:30 - 10:50", name: "MAN 1 Kota Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah9", password: "sekolah9" },
+            // HARI 1: 9 Sekolah
+            { id: 1, day: 1, time: "07:30 - 07:50", name: "SDN SANTIGI", username: "sekolah1", password: "40202871", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 2, day: 1, time: "07:50 - 08:10", name: "SD Kecil Langsat", username: "sekolah2", password: "69849142", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 3, day: 1, time: "08:10 - 08:30", name: "SD INPRES 1 ONGKA", username: "sekolah3", password: "40203048", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 4, day: 1, time: "08:30 - 08:50", name: "SDN 1 ONGKA", username: "sekolah4", password: "40202914", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 5, day: 1, time: "08:50 - 09:10", name: "SDN MALINO", username: "sekolah5", password: "40203009", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 6, day: 1, time: "09:30 - 09:50", name: "SD INPRES 1 MALINO", username: "sekolah6", password: "40203040", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 7, day: 1, time: "09:50 - 10:10", name: "SD INPRES 2 MALINO", username: "sekolah7", password: "40203228", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 8, day: 1, time: "10:10 - 10:30", name: "SD INPRES 3 MALINO", username: "sekolah8", password: "40203240", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 9, day: 1, time: "10:30 - 10:50", name: "SD INPRES 2 ONGKA", username: "sekolah9", password: "40203207", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
 
-            // HARI 2: 9 SEKOLAH
-            { id: 10, day: 2, time: "07:30 - 07:50", name: "SMA Negeri 6 Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah10", password: "sekolah10" },
-            { id: 11, day: 2, time: "07:50 - 08:10", name: "SMA Negeri 7 Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah11", password: "sekolah11" },
-            { id: 12, day: 2, time: "08:10 - 08:30", name: "SMA Al-Azhar Mandiri Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah12", password: "sekolah12" },
-            { id: 13, day: 2, time: "08:30 - 08:50", name: "SMA Labschool Untad Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah13", password: "sekolah13" },
-            { id: 14, day: 2, time: "08:50 - 09:10", name: "SMA Karuna Dipa Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah14", password: "sekolah14" },
-            { id: 15, day: 2, time: "09:30 - 09:50", name: "SMK Negeri 4 Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah15", password: "sekolah15" },
-            { id: 16, day: 2, time: "09:50 - 10:10", name: "SMK Negeri 5 Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah16", password: "sekolah16" },
-            { id: 17, day: 2, time: "10:10 - 10:30", name: "SMK Negeri 6 Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah17", password: "sekolah17" },
-            { id: 18, day: 2, time: "10:30 - 10:50", name: "MAN 2 Kota Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah18", password: "sekolah18" },
+            // HARI 2: 9 Sekolah
+            { id: 10, day: 2, time: "07:30 - 07:50", name: "SDN 2 ONGKA", username: "sekolah10", password: "40202839", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 11, day: 2, time: "07:50 - 08:10", name: "SD KECIL TRIMUSPASARI", username: "sekolah11", password: "69849089", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 12, day: 2, time: "08:10 - 08:30", name: "SD KECIL TABOLO BOLO", username: "sekolah12", password: "40205219", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 13, day: 2, time: "08:30 - 08:50", name: "SDN DESPOT ONGKA", username: "sekolah13", password: "40203128", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 14, day: 2, time: "08:50 - 09:10", name: "SDN SALMEKAR WILAYAH KHUSUS", username: "sekolah14", password: "40202993", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 15, day: 2, time: "09:30 - 09:50", name: "SDIT HIDAYATULLAH MULTAZAM", username: "sekolah15", password: "69938626", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 16, day: 2, time: "09:50 - 10:10", name: "SD INPRES 1 TINOMBALA", username: "sekolah16", password: "40203090", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 17, day: 2, time: "10:10 - 10:30", name: "SDN TINOMBALA", username: "sekolah17", password: "40203024", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 18, day: 2, time: "10:30 - 10:50", name: "SDN OGOMEGANGDAERAH KHUSUS", username: "sekolah18", password: "40205213", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
 
-            // HARI 3: 8 SEKOLAH
-            { id: 19, day: 3, time: "07:30 - 07:50", name: "SMA Negeri 1 Sigi", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah19", password: "sekolah19" },
-            { id: 20, day: 3, time: "07:50 - 08:10", name: "SMA Negeri 2 Sigi", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah20", password: "sekolah20" },
-            { id: 21, day: 3, time: "08:10 - 08:30", name: "SMA Negeri 1 Donggala", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah21", password: "sekolah21" },
-            { id: 22, day: 3, time: "08:30 - 08:50", name: "SMK Negeri 1 Banawa", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah22", password: "sekolah22" },
-            { id: 23, day: 3, time: "09:10 - 09:30", name: "SMK Muhammadiyah 1 Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah23", password: "sekolah23" },
-            { id: 24, day: 3, time: "09:30 - 09:50", name: "SMA GKST Imanuel Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah24", password: "sekolah24" },
-            { id: 25, day: 3, time: "09:50 - 10:10", name: "MA Alkhairaat Pusat Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah25", password: "sekolah25" },
-            { id: 26, day: 3, time: "10:10 - 10:30", name: "SMK Bina Potensi Palu", meetLink: DEFAULT_MEET_LINK, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "", username: "sekolah26", password: "sekolah26" }
+            // HARI 3: 8 Sekolah
+            { id: 19, day: 3, time: "07:30 - 07:50", name: "SD KECIL KARYA MANDIRI", username: "sekolah19", password: "40204674", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 20, day: 3, time: "07:50 - 08:10", name: "SD INPRES 2 TINOMBALA", username: "sekolah20", password: "40203252", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 21, day: 3, time: "08:10 - 08:30", name: "SMP NEGERI 2 BOLANO LAMBUNU", username: "sekolah21", password: "40202978", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 22, day: 3, time: "08:30 - 08:50", name: "SMP NEGERI 3 BOLANO LAMBUNU", username: "sekolah22", password: "40202962", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 23, day: 3, time: "09:10 - 09:30", name: "SMP SATAP NEGERI 2 BOLANO LAMBUNU", username: "sekolah23", password: "40204626", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 24, day: 3, time: "09:30 - 09:50", name: "SMP SATAP NEGERI 3 BOLANO LAMBUNU", username: "sekolah24", password: "69787793", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 25, day: 3, time: "09:50 - 10:10", name: "SMP SATAP NEGERI 3 ONGKA MALINO", username: "sekolah25", password: "40206949", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" },
+            { id: 26, day: 3, time: "10:10 - 10:30", name: "SMP SATAP NEGERI KARYA MANDIRI", username: "sekolah26", password: "69945615", meetLink: MEET_LINK_RESMI, status: "pending", notes: "", driveLink: "", proctorName: "", attendance: "", schoolNote: "" }
         ];
 
-        // State Aplikasi
-        let schoolsData = JSON.parse(JSON.stringify(initialSchools));
-        let pengawasCredentials = { username: "pengawas", password: "123456" };
+        // State Aplikasi (Mendukung data tertanam untuk mode portable antar perangkat)
+        const EMBEDDED_STATE = /*__EMBEDDED_STATE_START__*/null/*__EMBEDDED_STATE_END__*/;
+        let schoolsData = EMBEDDED_STATE?.schoolsData ? JSON.parse(JSON.stringify(EMBEDDED_STATE.schoolsData)) : JSON.parse(JSON.stringify(initialSchools));
+        let pengawasCredentials = EMBEDDED_STATE?.pengawasCredentials || { username: "pengawas", password: "123456" };
         let currentDayFilter = 1;
         let currentLoginRole = 'pengawas';
         let loggedInSchoolId = null;
@@ -807,6 +820,7 @@
         let db = null;
         let auth = null;
         let cloudUser = null;
+        let cloudInitPromise = null;
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'simon-ujian-default';
 
         function updateSyncBadge(connected, label = "Cloud Aktif") {
@@ -816,97 +830,109 @@
                 badge.className = "hidden sm:inline-flex items-center space-x-1 px-2 py-0.5 text-[11px] font-medium rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200";
                 badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span><span>${label}</span>`;
             } else {
-                badge.className = "hidden sm:inline-flex items-center space-x-1 px-2 py-0.5 text-[11px] font-medium rounded-md bg-amber-50 text-amber-700 border border-amber-200";
-                badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span><span>${label}</span>`;
+                badge.className = "hidden sm:inline-flex items-center space-x-1 px-2 py-0.5 text-[11px] font-medium rounded-md bg-sky-50 text-sky-700 border border-sky-200";
+                badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span><span>${label}</span>`;
             }
         }
 
-        async function initCloudSync() {
-            try {
-                if (typeof __firebase_config === 'undefined' || !__firebase_config) {
-                    updateSyncBadge(false, "Mode Lokal");
-                    return;
-                }
-                const firebaseConfig = JSON.parse(__firebase_config);
-                const app = initializeApp(firebaseConfig);
-                auth = getAuth(app);
-                db = getFirestore(app);
-
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    const cred = await signInWithCustomToken(auth, __initial_auth_token);
-                    cloudUser = cred.user;
-                } else {
-                    const cred = await signInAnonymously(auth);
-                    cloudUser = cred.user;
-                }
-
-                if (!cloudUser) return;
-                updateSyncBadge(true, "Cloud Aktif");
-
-                // Dengarkan perubahan real-time koleksi 26 sekolah
-                const schoolsCol = collection(db, 'artifacts', appId, 'public', 'data', 'schools_monitoring');
-                onSnapshot(schoolsCol, (snapshot) => {
-                    if (snapshot.empty) {
-                        schoolsData.forEach(s => saveSchoolToCloud(s));
-                        return;
+        function initCloudSync() {
+            if (cloudInitPromise) return cloudInitPromise;
+            cloudInitPromise = (async () => {
+                try {
+                    if (typeof __firebase_config === 'undefined' || !__firebase_config) {
+                        updateSyncBadge(false, "Mode Portable");
+                        return false;
                     }
-                    let hasUpdates = false;
-                    snapshot.forEach((docSnap) => {
-                        const cloudItem = docSnap.data();
-                        const idx = schoolsData.findIndex(item => item.id === cloudItem.id);
-                        if (idx !== -1) {
-                            schoolsData[idx] = { ...schoolsData[idx], ...cloudItem };
-                            hasUpdates = true;
+                    const firebaseConfig = JSON.parse(__firebase_config);
+                    const app = initializeApp(firebaseConfig);
+                    auth = getAuth(app);
+                    db = getFirestore(app);
+
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        const cred = await signInWithCustomToken(auth, __initial_auth_token);
+                        cloudUser = cred.user;
+                    } else {
+                        const cred = await signInAnonymously(auth);
+                        cloudUser = cred.user;
+                    }
+
+                    if (!cloudUser) {
+                        updateSyncBadge(false, "Mode Portable");
+                        return false;
+                    }
+                    updateSyncBadge(true, "Cloud Aktif");
+
+                    // Dengarkan perubahan real-time koleksi 26 sekolah
+                    const schoolsCol = collection(db, 'artifacts', appId, 'public', 'data', 'schools_monitoring');
+                    onSnapshot(schoolsCol, (snapshot) => {
+                        if (snapshot.empty) {
+                            schoolsData.forEach(s => saveSchoolToCloud(s));
+                            return;
                         }
+                        let hasUpdates = false;
+                        snapshot.forEach((docSnap) => {
+                            const cloudItem = docSnap.data();
+                            const idx = schoolsData.findIndex(item => item.id === cloudItem.id);
+                            if (idx !== -1) {
+                                schoolsData[idx] = { ...schoolsData[idx], ...cloudItem };
+                                hasUpdates = true;
+                            }
+                        });
+                        if (hasUpdates) {
+                            populateSchoolLoginDropdown();
+                            renderSchools();
+                            updateStats();
+                            renderRekapTable();
+                            if (loggedInSchoolId) {
+                                refreshSchoolPortalView(loggedInSchoolId, false);
+                            }
+                        }
+                    }, (err) => {
+                        console.error("Error snapshot sekolah:", err);
+                        updateSyncBadge(false, "Mode Portable");
                     });
-                    if (hasUpdates) {
-                        populateSchoolLoginDropdown();
-                        renderSchools();
-                        updateStats();
-                        renderRekapTable();
-                        if (loggedInSchoolId) {
-                            refreshSchoolPortalView(loggedInSchoolId, false);
-                        }
-                    }
-                }, (err) => {
-                    console.error("Error snapshot sekolah:", err);
-                    updateSyncBadge(false, "Sync Tertunda");
-                });
 
-                // Dengarkan pengaturan link & ID Master Drive & Spreadsheet
-                const settingsDoc = doc(db, 'artifacts', appId, 'public', 'data', 'app_settings', 'master_links');
-                onSnapshot(settingsDoc, (docSnap) => {
-                    if (docSnap.exists()) {
-                        const data = docSnap.data();
-                        const driveIdInput = document.getElementById('master-drive-id');
-                        const driveInput = document.getElementById('master-drive-url');
-                        const sheetIdInput = document.getElementById('master-sheet-id');
-                        const sheetInput = document.getElementById('master-sheet-url');
+                    // Dengarkan pengaturan link & ID Master Drive & Spreadsheet
+                    const settingsDoc = doc(db, 'artifacts', appId, 'public', 'data', 'app_settings', 'master_links');
+                    onSnapshot(settingsDoc, (docSnap) => {
+                        if (docSnap.exists()) {
+                            const data = docSnap.data();
+                            const driveIdInput = document.getElementById('master-drive-id');
+                            const driveInput = document.getElementById('master-drive-url');
+                            const sheetIdInput = document.getElementById('master-sheet-id');
+                            const sheetInput = document.getElementById('master-sheet-url');
 
-                        if (driveIdInput && data.driveId !== undefined && document.activeElement !== driveIdInput) {
-                            driveIdInput.value = data.driveId;
+                            if (driveIdInput && data.driveId && document.activeElement !== driveIdInput) {
+                                driveIdInput.value = data.driveId;
+                            }
+                            if (driveInput && data.driveUrl && document.activeElement !== driveInput) {
+                                driveInput.value = data.driveUrl;
+                            }
+                            if (sheetIdInput && data.sheetId && document.activeElement !== sheetIdInput) {
+                                sheetIdInput.value = data.sheetId;
+                            }
+                            if (sheetInput && data.sheetUrl && document.activeElement !== sheetInput) {
+                                sheetInput.value = data.sheetUrl;
+                            }
+                            if (data.pengawasUsername) pengawasCredentials.username = data.pengawasUsername;
+                            if (data.pengawasPassword) pengawasCredentials.password = data.pengawasPassword;
+                        } else {
+                            saveMasterLinksToCloud(false);
                         }
-                        if (driveInput && data.driveUrl !== undefined && document.activeElement !== driveInput) {
-                            driveInput.value = data.driveUrl;
-                        }
-                        if (sheetIdInput && data.sheetId !== undefined && document.activeElement !== sheetIdInput) {
-                            sheetIdInput.value = data.sheetId;
-                        }
-                        if (sheetInput && data.sheetUrl !== undefined && document.activeElement !== sheetInput) {
-                            sheetInput.value = data.sheetUrl;
-                        }
-                        if (data.pengawasUsername) pengawasCredentials.username = data.pengawasUsername;
-                        if (data.pengawasPassword) pengawasCredentials.password = data.pengawasPassword;
-                    }
-                }, (err) => console.error("Error settings snapshot:", err));
+                    }, (err) => console.error("Error settings snapshot:", err));
 
-            } catch (err) {
-                console.error("Inisialisasi cloud gagal:", err);
-                updateSyncBadge(false, "Mode Offline");
-            }
+                    return true;
+                } catch (err) {
+                    console.error("Inisialisasi cloud gagal:", err);
+                    updateSyncBadge(false, "Mode Portable");
+                    return false;
+                }
+            })();
+            return cloudInitPromise;
         }
 
         async function saveSchoolToCloud(schoolObj) {
+            if (!db || !cloudUser) await initCloudSync();
             if (!db || !cloudUser) return;
             try {
                 const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'schools_monitoring', `school_${schoolObj.id}`);
@@ -920,15 +946,22 @@
         }
 
         async function saveMasterLinksToCloud(showNotification = false) {
+            const driveId = document.getElementById('master-drive-id')?.value.trim() || '';
+            const driveUrl = document.getElementById('master-drive-url')?.value.trim() || '';
+            const sheetId = document.getElementById('master-sheet-id')?.value.trim() || '';
+            const sheetUrl = document.getElementById('master-sheet-url')?.value.trim() || '';
+
             if (!db || !cloudUser) {
-                if (showNotification) showToast("Koneksi Cloud belum siap, periksa jaringan internet Anda.", "warning");
+                await initCloudSync();
+            }
+
+            if (!db || !cloudUser) {
+                if (showNotification) {
+                    showToast("Pengaturan ID & Link tersimpan di sesi aktif. Klik 'Unduh HTML Portable' jika ingin memindahkan file ini ke perangkat lain.", "success");
+                }
                 return;
             }
             try {
-                const driveId = document.getElementById('master-drive-id')?.value.trim() || '';
-                const driveUrl = document.getElementById('master-drive-url')?.value.trim() || '';
-                const sheetId = document.getElementById('master-sheet-id')?.value.trim() || '';
-                const sheetUrl = document.getElementById('master-sheet-url')?.value.trim() || '';
                 const settingsRef = doc(db, 'artifacts', appId, 'public', 'data', 'app_settings', 'master_links');
                 await setDoc(settingsRef, {
                     driveId,
@@ -944,12 +977,55 @@
                 }
             } catch (err) {
                 console.error("Gagal menyimpan link master:", err);
-                if (showNotification) showToast("Gagal menyimpan pengaturan ke Cloud.", "warning");
+                if (showNotification) {
+                    showToast("ID & Link tersimpan di sesi aktif. Gunakan 'Unduh HTML Portable' untuk backup antar perangkat.", "info");
+                }
+            }
+        }
+
+        function downloadPortableHTML() {
+            try {
+                const stateToEmbed = {
+                    masterDriveId: document.getElementById('master-drive-id')?.value.trim() || '',
+                    masterDriveUrl: document.getElementById('master-drive-url')?.value.trim() || '',
+                    masterSheetId: document.getElementById('master-sheet-id')?.value.trim() || '',
+                    masterSheetUrl: document.getElementById('master-sheet-url')?.value.trim() || '',
+                    pengawasCredentials,
+                    schoolsData
+                };
+
+                let fullHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+                const markerRegex = /\/\*__EMBEDDED_STATE_START__\*\/[\s\S]*?\/\*__EMBEDDED_STATE_END__\*\//;
+                if (markerRegex.test(fullHtml)) {
+                    fullHtml = fullHtml.replace(
+                        markerRegex,
+                        `/*__EMBEDDED_STATE_START__*/${JSON.stringify(stateToEmbed)}/*__EMBEDDED_STATE_END__*/`
+                    );
+                }
+
+                const blob = new Blob([fullHtml], { type: "text/html;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `SIMON_UJIAN_Portable_${new Date().toISOString().slice(0, 10)}.html`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                showToast("File HTML Portable berhasil diunduh! ID Drive, ID Sheet & seluruh data sudah tertanam di dalamnya.", "success");
+            } catch (err) {
+                console.error("Gagal membuat HTML portable:", err);
+                showToast("Gagal membuat file HTML Portable.", "warning");
             }
         }
 
         // Inisialisasi saat halaman dimuat
         document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('master-drive-id').value = EMBEDDED_STATE?.masterDriveId || DEFAULT_DRIVE_ID;
+            document.getElementById('master-drive-url').value = EMBEDDED_STATE?.masterDriveUrl || DEFAULT_DRIVE_URL;
+            document.getElementById('master-sheet-id').value = EMBEDDED_STATE?.masterSheetId || DEFAULT_SHEET_ID;
+            document.getElementById('master-sheet-url').value = EMBEDDED_STATE?.masterSheetUrl || DEFAULT_SHEET_URL;
+
             populateSchoolLoginDropdown();
             lucide.createIcons();
             renderSchools();
@@ -1028,12 +1104,12 @@
                 const school = schoolsData.find(s => s.id === schoolId);
                 if (!school) return;
 
-                const validSchoolPass = school.password || `sekolah${school.id}`;
-                if (password === validSchoolPass || password === '123456') {
+                const validSchoolPass = String(school.password || `sekolah${school.id}`).trim();
+                if (password === validSchoolPass) {
                     enterAppAsSekolah(school);
                     showToast(`Berhasil masuk sebagai ${school.name}`, "success");
                 } else {
-                    showToast("Kata Sandi sekolah tidak sesuai!", "warning");
+                    showToast("Kata Sandi (NPSN) sekolah tidak sesuai!", "warning");
                 }
             }
         }
@@ -1448,7 +1524,7 @@
                 updateStats();
                 renderRekapTable();
                 closeSchoolModal();
-                showToast(`Laporan ${schoolsData[idx].name} tersimpan & tersinkron ke Cloud!`, 'success');
+                showToast(`Laporan ${schoolsData[idx].name} berhasil disimpan!`, 'success');
             }
         }
 
@@ -1843,6 +1919,11 @@
             closeResetModal();
             schoolsData = JSON.parse(JSON.stringify(initialSchools));
             pengawasCredentials = { username: "pengawas", password: "123456" };
+            document.getElementById('master-drive-id').value = DEFAULT_DRIVE_ID;
+            document.getElementById('master-drive-url').value = DEFAULT_DRIVE_URL;
+            document.getElementById('master-sheet-id').value = DEFAULT_SHEET_ID;
+            document.getElementById('master-sheet-url').value = DEFAULT_SHEET_URL;
+
             populateSchoolLoginDropdown();
             renderSchools();
             updateStats();
@@ -1850,7 +1931,7 @@
 
             await Promise.all(schoolsData.map(s => saveSchoolToCloud(s)));
             await saveMasterLinksToCloud();
-            showToast("Seluruh data telah dikembalikan ke pengaturan awal.", "info");
+            showToast("Seluruh data telah dikembalikan ke pengaturan awal (26 Sekolah & NPSN).", "info");
         }
 
         // ==========================================
@@ -1901,6 +1982,7 @@
         window.syncIdToUrl = syncIdToUrl;
         window.syncUrlToId = syncUrlToId;
         window.saveMasterLinksToCloud = saveMasterLinksToCloud;
+        window.downloadPortableHTML = downloadPortableHTML;
         window.downloadExcelTemplate = downloadExcelTemplate;
         window.exportToExcelXLSX = exportToExcelXLSX;
         window.handleExcelImport = handleExcelImport;
