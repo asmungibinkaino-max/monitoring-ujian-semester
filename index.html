@@ -78,7 +78,7 @@
                         <div>
                             <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Username / NIP Pengawas</label>
                             <div class="relative">
-                                <input type="text" id="login-pengawas-user" value="pengawas" placeholder="Masukkan username pengawas" class="w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                <input type="text" id="login-pengawas-user" value="" autocomplete="off" placeholder="Masukkan username pengawas" class="w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
                                 <i data-lucide="user" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
                             </div>
                         </div>
@@ -89,6 +89,7 @@
                         <div>
                             <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Pilih Sekolah (26 Sekolah)</label>
                             <select id="login-school-select" class="w-full px-3 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none bg-white">
+                                <option value="">-- Pilih Nama Sekolah --</option>
                                 <!-- Opsi 26 sekolah diisi otomatis oleh JS -->
                             </select>
                         </div>
@@ -98,7 +99,7 @@
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Kata Sandi / PIN Akses</label>
                         <div class="relative">
-                            <input type="password" id="login-password" value="123456" required placeholder="Masukkan kata sandi" class="w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                            <input type="password" id="login-password" value="" autocomplete="off" required placeholder="Masukkan kata sandi" class="w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
                             <i data-lucide="lock" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
                         </div>
                     </div>
@@ -109,8 +110,8 @@
                     </button>
                 </form>
 
-                <!-- Kredit Pengembang Aplikasi -->
-                <div class="mt-6 pt-4 border-t border-slate-100 text-center">
+                <!-- Kredit Pengembang Aplikasi (disembunyikan saat mode Live Meet aktif) -->
+                <div id="developer-credit-box" class="mt-6 pt-4 border-t border-slate-100 text-center">
                     <p class="text-xs font-medium text-slate-600">
                         Aplikasi ini dibuat dan dikembangkan oleh <span class="font-bold text-indigo-700">Fahmi Abdul Rozak</span>
                     </p>
@@ -930,7 +931,7 @@
         function populateSchoolLoginDropdown() {
             const select = document.getElementById('login-school-select');
             if (!select) return;
-            select.innerHTML = '';
+            select.innerHTML = '<option value="">-- Pilih Nama Sekolah --</option>';
             schoolsData.forEach(s => {
                 const opt = document.createElement('option');
                 opt.value = s.id;
@@ -945,6 +946,13 @@
             const btnSekolah = document.getElementById('role-btn-sekolah');
             const fieldPengawas = document.getElementById('login-field-pengawas');
             const fieldSekolah = document.getElementById('login-field-sekolah');
+            const passInput = document.getElementById('login-password');
+            const userInput = document.getElementById('login-pengawas-user');
+            const schoolSelect = document.getElementById('login-school-select');
+
+            if (passInput) passInput.value = '';
+            if (userInput) userInput.value = '';
+            if (schoolSelect) schoolSelect.value = '';
 
             if (role === 'pengawas') {
                 btnPengawas.className = "py-2.5 px-3 rounded-lg text-sm font-semibold bg-white text-indigo-700 shadow-sm flex items-center justify-center space-x-1.5 transition";
@@ -981,7 +989,12 @@
                 };
                 enterAppAsPengawas();
             } else {
-                const schoolId = parseInt(document.getElementById('login-school-select').value);
+                const schoolVal = document.getElementById('login-school-select').value;
+                if (!schoolVal) {
+                    showToast("Silakan pilih nama sekolah terlebih dahulu!", "warning");
+                    return;
+                }
+                const schoolId = parseInt(schoolVal);
                 const school = schoolsData.find(s => s.id === schoolId);
                 if (!school) return;
 
@@ -1083,6 +1096,13 @@
                 isTimerRunning = false;
             }
             currentUser = null;
+            const userInput = document.getElementById('login-pengawas-user');
+            const passInput = document.getElementById('login-password');
+            const schoolSelect = document.getElementById('login-school-select');
+            if (userInput) userInput.value = '';
+            if (passInput) passInput.value = '';
+            if (schoolSelect) schoolSelect.value = '';
+
             document.getElementById('main-app').classList.add('hidden');
             document.getElementById('login-screen').classList.remove('hidden');
             lucide.createIcons();
@@ -1240,6 +1260,10 @@
             activeSchoolId = schoolId;
             timerSeconds = 20 * 60;
             updateTimerDisplay();
+
+            // Sembunyikan kredit pengembang saat sesi Live Google Meet dimulai
+            const devCredit = document.getElementById('developer-credit-box');
+            if (devCredit) devCredit.classList.add('hidden');
 
             // Update UI Header Timer
             document.getElementById('active-school-name').textContent = `${school.id}. ${school.name}`;
